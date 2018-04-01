@@ -208,6 +208,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f12a917f16e6449938d5f47f43eb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sf_targetGameObject: {fileID: 819988163}
+  _sf_enableTransition: 0
+  _sf_loop: 0
+  _sf_phases:
+  - _sf_enabled: 0
+    _sf_name: Phase 1 - Schlongman
+    _sf_delay: 0
+    _sf_duration: 0
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _sf_enabled: 0
+    _sf_name: Phase 2 - Schlongman
+    _sf_delay: 0
+    _sf_duration: 0
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - _sf_enabled: 0
+    _sf_name: Phase 3 - Schlongman
+    _sf_delay: 0
+    _sf_duration: 0
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!81 &1521046635
 AudioListener:
   m_ObjectHideFlags: 0
