@@ -86,7 +86,7 @@ public partial class UITransitionerEditor : Editor
             return;
 
         ShowAllPhaseSettingsBox();
-        DisplayMainButton(new GUIContent("Add Phase", "Creates a new Phase"), _editorStyles.lairinusGreen, new Action(() => HandleOnClick_AddPhase()), false, null, 20);
+        DisplayMainButton(new GUIContent("Add Phase", "Creates a new Phase"), _editorStyles.lairinusGreen, new Action(() => HandleOnClick_AddPhase()), true, null, 20);
         ShowPhaseSingleSettingsBox();
         DisplayMainButton(new GUIContent("Back"), _editorStyles.lairinusRed, new Action(() => OpenPage(Pages.Main)), true, null, 20);
     }
@@ -112,11 +112,6 @@ public partial class UITransitionerEditor : Editor
 
         _currentSelectedPhaseProperty = null;
         _currentlySelectedPhaseIndex = -1;
-    }
-
-    private void HandleOnClick_OpenComponentSelect()
-    {
-        _currentPage = Pages.PropertyManager;
     }
 
     private void HandleOnClick_RemovePhase(int index)
@@ -186,7 +181,7 @@ public partial class UITransitionerEditor : Editor
         actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, new GUIContent("Delay"), 20, true, false)));
         actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, new GUIContent("Duration"), 20, true, false)));
         actions.Add(new Action(() => DisplayHorizontalProperty(lerpPlaystyleType, new GUIContent("Animation Lerp"), 20, true, false, 50)));
-        actions.Add(new Action(() => DisplayMainButton(new GUIContent("Edit Properties", "Allows you to add Properties and Fields from this component to lerp or set"), _editorStyles.lairinusGreen, new Action(() => HandleOnClick_OpenComponentSelect()), true, null, 20)));
+        actions.Add(new Action(() => DisplayMainButton(new GUIContent("Edit Properties", "Allows you to add Properties and Fields from this component to lerp or set"), _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.PropertyManager)), true, null, 20)));
 
         DisplaySettingBox("Phase Settings", actions.ToArray(), 20);
     }

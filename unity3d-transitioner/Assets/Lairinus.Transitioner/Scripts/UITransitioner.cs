@@ -11,6 +11,7 @@ public class UITransitioner : MonoBehaviour
     public bool enableTransition { get { return _sf_enableTransition; } set { _sf_enableTransition = value; } }
     public bool loop { get { return _sf_loop; } set { _sf_loop = value; } }
     [SerializeField] private List<Phase> _sf_phases = new List<Phase>();
+    public List<Phase> phases { get { return _sf_phases; } }
 
     [System.Serializable]
     public class Phase

@@ -64,6 +64,8 @@ public partial class UITransitionerEditor : Editor
     private void OpenPage(Pages newCurrentPage)
     {
         _currentPage = newCurrentPage;
+        if (newCurrentPage == Pages.PropertyManager)
+            InitializePropertyManagerPage();
     }
 
     private void DisplayHorizontalProperty(SerializedProperty property, GUIContent content, float padding, bool includeSpaceBefore = false, bool includeSpaceAfter = false, float customHeight = -1)
