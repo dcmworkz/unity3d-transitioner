@@ -27,7 +27,7 @@ public partial class UITransitionerEditor : Editor
         Action[] actions = { targetGOProperty, enableTransitionProperty, loopProperty };
         DisplaySettingBox("Basic Settings", actions, 20);
         GUILayout.Space(20);
-        DisplayMainButton(new GUIContent("Modify Phases"), normalButtonColor, new Action(() => OnClick_ShowPhasesPage()));
+        DisplayMainButton(new GUIContent("Modify Phases"), _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
     }
 
     private void DisplaySettingBox(string title, Action[] propertyActions, float space, float preSpace = 0, float postSpace = 0)
@@ -56,8 +56,11 @@ public partial class UITransitionerEditor : Editor
         GUILayout.Space(postSpace);
     }
 
-    private void DisplayMainButton(GUIContent content, Color buttonColor, Action onClick, bool isEnabled = true, Action disabledOnClick = null)
+    private void DisplayMainButton(GUIContent content, Color buttonColor, Action onClick, bool isEnabled = true, Action disabledOnClick = null, float paddingTop = 0, float paddingBottom = 0)
     {
+        if (paddingTop > 0)
+            GUILayout.Space(paddingTop);
+
         Color heldColor = GUI.backgroundColor;
         GUI.backgroundColor = buttonColor;
         GUILayout.BeginHorizontal();
@@ -72,5 +75,8 @@ public partial class UITransitionerEditor : Editor
         GUILayout.FlexibleSpace();
         GUILayout.EndHorizontal();
         GUI.backgroundColor = heldColor;
+
+        if (paddingBottom > 0)
+            GUILayout.Space(paddingBottom);
     }
 }

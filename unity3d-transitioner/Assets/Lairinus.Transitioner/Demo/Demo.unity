@@ -213,35 +213,93 @@ MonoBehaviour:
   _sf_loop: 0
   _sf_phases:
   - _sf_enabled: 0
-    _sf_name: Phase 1 - Schlongman
+    _sf_name: Phase 1
     _sf_delay: 0
     _sf_duration: 0
     _sf_lerpPlaystyleType:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
   - _sf_enabled: 0
-    _sf_name: Phase 2 - Schlongman
+    _sf_name: Phase 3
     _sf_delay: 0
     _sf_duration: 0
     _sf_lerpPlaystyleType:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
   - _sf_enabled: 0
-    _sf_name: Phase 3 - Schlongman
+    _sf_name: Phase 5
     _sf_delay: 0
     _sf_duration: 0
     _sf_lerpPlaystyleType:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
-      m_RotationOrder: 4
+      m_RotationOrder: 0
+  - _sf_enabled: 0
+    _sf_name: Phase 6
+    _sf_delay: 0
+    _sf_duration: 0
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
 --- !u!81 &1521046635
 AudioListener:
   m_ObjectHideFlags: 0

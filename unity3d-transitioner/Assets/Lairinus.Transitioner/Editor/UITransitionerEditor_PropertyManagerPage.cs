@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using System;
 
 public partial class UITransitionerEditor : Editor
 {
@@ -11,6 +12,7 @@ public partial class UITransitionerEditor : Editor
         if (_currentPage != Pages.PropertyManager)
             return;
 
-        EditorGUILayout.LabelField("Property Manager Page");
+        Action openPage = new Action(() => OpenPage(Pages.Phases));
+        DisplayMainButton(new GUIContent("Back", "Returns to the Phases page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
     }
 }

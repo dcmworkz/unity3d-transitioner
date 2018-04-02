@@ -303,7 +303,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Lairinus.Transitioner\Editor\TransitoinerEditorStyles.cs" />
+    <Compile Include="Assets\Lairinus.Transitioner\Editor\TransitionerEditorStyles.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Editor\UITransitionerEditor.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Editor\UITransitionerEditor_MainPage.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Editor\UITransitionerEditor_PhasesPage.cs" />
