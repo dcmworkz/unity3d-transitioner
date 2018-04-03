@@ -232,7 +232,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 52
+  controlID: 74
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -488,18 +488,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000b628000068290000c62f00001a29000026340000802d0000ee290000b6290000402800005c7df9ffa2280000a6280000b028000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: UITransitionerEditor_PropertySelectorPage
+      m_OriginalName: UITransitionerEditor_PropertySelectorPage
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 2026
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -536,7 +536,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 92
-    width: 1473
+    width: 1501
     height: 577
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 0
@@ -567,25 +567,25 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
-      width: 1473
+      width: 1501
       height: 560
     m_Scale: {x: 0.93333334, y: 0.93333334}
-    m_Translation: {x: 736.5, y: 280}
+    m_Translation: {x: 750.5, y: 280}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -789.1071
+      x: -804.1071
       y: -300
-      width: 1578.2142
+      width: 1608.2142
       height: 600
     m_MinimalGUI: 1
   m_defaultScale: 0.93333334
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 1473, y: 577}
+  m_LastWindowPixelSize: {x: 1501, y: 577}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100

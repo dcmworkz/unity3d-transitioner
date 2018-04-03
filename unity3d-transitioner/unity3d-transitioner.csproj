@@ -297,6 +297,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Lairinus.Transitioner\Scripts\ReflectedPhaseMember.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Scripts\TransitionerUtility.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Scripts\UITransitioner.cs" />
   </ItemGroup>

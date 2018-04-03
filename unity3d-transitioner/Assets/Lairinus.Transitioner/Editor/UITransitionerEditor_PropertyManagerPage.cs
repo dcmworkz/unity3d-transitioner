@@ -6,58 +6,20 @@ using UnityEditorInternal;
 using System;
 using System.Reflection;
 
-public partial class UITransitionerEditor : Editor
+namespace Lairinus.Transitions
 {
-    private List<Action> _componentActions = new List<Action>();
-
-    private void DrawPropertyManagerPage()
+    public partial class UITransitionerEditor : Editor
     {
-        if (_currentPage != Pages.PropertyManager)
-            return;
-
-        DisplaySettingBox("Components on GameObject", _componentActions.ToArray(), 20);
-
-        Action openPage = new Action(() => OpenPage(Pages.Phases));
-        DisplayMainButton(new GUIContent("Back", "Returns to the Phases page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
-    }
-
-    private void InitializePropertyManagerPage()
-    {
-        UITransitioner uiTransition = (UITransitioner)target;
-        Component[] components = uiTransition.gameObject.GetComponents(typeof(Component));
-        _componentActions.Clear();
-        foreach (Component c in components)
+        private void DrawPropertyManagerPage()
         {
-            if (c.GetType() == typeof(UITransitioner))
-                continue;
+            if (_currentPage != Pages.PropertyManager)
+                return;
 
-            Action componentAction = () => DisplayComponentSelectUI(c);
-            _componentActions.Add(componentAction);
+            Action openPropertySelectionPage = new Action(() => OpenPage(Pages.PropertySelector));
+            DisplayMainButton(new GUIContent("Add Members", "Adds more fields and/or properties to this phase"), _editorStyles.lairinusGreen, openPropertySelectionPage, true, null, 20, 20);
 
-            foreach (FieldInfo componentFieldInfo in c.GetType().GetFields())
-            {
-                Debug.Log(componentFieldInfo.Name);
-            }
-
-            foreach (PropertyInfo componentPropertyInfo in c.GetType().GetProperties())
-            {
-                if (componentPropertyInfo.CanRead && componentPropertyInfo.CanWrite)
-                    Debug.Log(componentPropertyInfo.Name);
-            }
+            Action openPage = new Action(() => OpenPage(Pages.Phases));
+            DisplayMainButton(new GUIContent("Back", "Returns to the Phases page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
         }
-    }
-
-    private void DisplayComponentSelectUI(Component reflectedComponent)
-    {
-        GUILayout.BeginVertical();
-        GUILayout.BeginHorizontal();
-        GUILayout.Space(20);
-        GUIContent guiContent = new GUIContent(reflectedComponent.GetType().FullName);
-        if (GUILayout.Button(guiContent))
-        {
-        }
-        GUILayout.Space(20);
-        GUILayout.EndHorizontal();
-        GUILayout.EndVertical();
     }
 }
