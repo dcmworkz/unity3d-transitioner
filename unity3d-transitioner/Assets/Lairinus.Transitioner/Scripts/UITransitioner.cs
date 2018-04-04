@@ -24,13 +24,18 @@ namespace Lairinus.Transitions
             [SerializeField] private float _sf_delay = 0;
             [SerializeField] private float _sf_duration = 0;
             [SerializeField] private AnimationCurve _sf_lerpPlaystyleType = new AnimationCurve();
-            [SerializeField] private List<ReflectedPhaseMember> _sf_phaseProperties = new List<ReflectedPhaseMember>();
+            [SerializeField] private List<ReflectedPhaseMember> _sf_reflectedMembers = new List<ReflectedPhaseMember>();
             public float duration { get { return _sf_duration; } set { _sf_duration = value; } }
             public float delay { get { return _sf_delay; } }
             public string name { get { return _sf_name; } set { _sf_name = value; } }
             public bool enabled { get { return _sf_enabled; } set { _sf_enabled = value; } }
             public AnimationCurve lerpPlaystyleType { get { return _sf_lerpPlaystyleType; } }
-            public List<ReflectedPhaseMember> phaseProperties { get { return _sf_phaseProperties; } }
+            public List<ReflectedPhaseMember> reflectedMembers { get { return _sf_reflectedMembers; } }
+        }
+
+        private void Awake()
+        {
+            Debug.Log(transform.name + _sf_phases[0].reflectedMembers.Count);
         }
     }
 }

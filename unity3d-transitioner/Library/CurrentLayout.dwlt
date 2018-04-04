@@ -232,7 +232,7 @@ MonoBehaviour:
   m_MinSize: {x: 436, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 74
+  controlID: 52
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -417,19 +417,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Lairinus.Transitioner/Editor
+    - Assets/Lairinus.Transitioner/Scripts
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Lairinus.Transitioner/Editor
+  - Assets/Lairinus.Transitioner/Scripts
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\__Unity\GitHub Projects\unity3d-transitioner\unity3d-transitioner
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 10280000
-    m_LastClickedID: 10256
-    m_ExpandedIDs: 000000008c270000ac27000000ca9a3bffffff7f
+    m_SelectedIDs: a2270000
+    m_LastClickedID: 10146
+    m_ExpandedIDs: 000000008e270000ae27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -457,7 +457,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008c270000ac270000
+    m_ExpandedIDs: 000000008e270000ae270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -488,18 +488,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000b628000068290000c62f00001a29000026340000802d0000ee290000b6290000402800005c7df9ffa2280000a6280000b028000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: UITransitionerEditor_PropertySelectorPage
-      m_OriginalName: UITransitionerEditor_PropertySelectorPage
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 2026
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -652,9 +652,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.28129593, y: 0.43842965, z: -0.1466594, w: -0.84091806}
   m_Size:
-    m_Target: 7.7369976
+    m_Target: 24.010036
     speed: 2
-    m_Value: 7.7369976
+    m_Value: 24.010036
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -695,8 +695,8 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3e280000
-    m_LastClickedID: 10302
+    m_SelectedIDs: 9ebfffff
+    m_LastClickedID: 0
     m_ExpandedIDs: 98fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

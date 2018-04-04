@@ -6,6 +6,7 @@ using System;
 using System.Reflection;
 using System.Linq;
 using UnityEditorInternal;
+using Lairinus.Transitions.Internal;
 
 namespace Lairinus.Transitions
 {
@@ -70,6 +71,18 @@ namespace Lairinus.Transitions
         private void HandleOnClick_WriteSelectedPropertyToPhase(ReflectedPhaseMember reflectedPhaseMember)
         {
             Debug.Log("Property " + reflectedPhaseMember.memberName + " added to current Phase!");
+            if (_currentSelectedPhaseProperty == null)
+                return;
+
+            // Set members
+            SerializedProperty reflectedPropertiesList = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_reflectedMembers");
+            reflectedPropertiesList.arraySize++;
+            serializedObject.ApplyModifiedProperties();
+
+            UITransitioner tran = (UITransitioner)target;
+            tran.phases[_currentlySelectedPhaseIndex].reflectedMembers[reflectedPropertiesList.arraySize - 1] = reflectedPhaseMember;
+            serializedObject.ApplyModifiedProperties();
+            Debug.Log(tran.phases[_currentlySelectedPhaseIndex].reflectedMembers.Count);
         }
 
         private void DisplayComponentSelectUI(Component reflectedComponent)
@@ -97,13 +110,16 @@ namespace Lairinus.Transitions
 
             foreach (FieldInfo componentFieldInfo in reflectedComponent.GetType().GetFields())
             {
-                ReflectedPhaseMember reflectedPhaseMember = new ReflectedPhaseMember(MemberType.Field, reflectedComponent, componentFieldInfo.Name, componentFieldInfo.FieldType);
-                _allReflectedPhaseMembers.Add(reflectedPhaseMember);
+                if (TransitionerUtility.GetInstance().typesDictionary.ContainsKey(componentFieldInfo.FieldType))
+                {
+                    ReflectedPhaseMember reflectedPhaseMember = new ReflectedPhaseMember(MemberType.Field, reflectedComponent, componentFieldInfo.Name, componentFieldInfo.FieldType);
+                    _allReflectedPhaseMembers.Add(reflectedPhaseMember);
+                }
             }
 
             foreach (PropertyInfo componentPropertyInfo in reflectedComponent.GetType().GetProperties())
             {
-                if (componentPropertyInfo.CanRead && componentPropertyInfo.CanWrite)
+                if (componentPropertyInfo.CanRead && componentPropertyInfo.CanWrite && TransitionerUtility.GetInstance().typesDictionary.ContainsKey(componentPropertyInfo.PropertyType))
                 {
                     ReflectedPhaseMember reflectedPhaseMember = new ReflectedPhaseMember(MemberType.Property, reflectedComponent, componentPropertyInfo.Name, componentPropertyInfo.PropertyType);
                     _allReflectedPhaseMembers.Add(reflectedPhaseMember);
