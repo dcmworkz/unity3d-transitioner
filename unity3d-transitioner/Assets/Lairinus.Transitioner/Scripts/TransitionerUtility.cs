@@ -5,6 +5,7 @@ using System;
 
 namespace Lairinus.Transitions.Internal
 {
+    [ExecuteInEditMode]
     public class TransitionerUtility : MonoBehaviour
     {
         private Dictionary<Type, AvailableMemberTypes> _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
@@ -36,18 +37,45 @@ namespace Lairinus.Transitions.Internal
             Component = 26
         }
 
+        public static string GetAvailableMemberName(int availableMemberType)
+        {
+            return Enum.GetName(typeof(AvailableMemberTypes), availableMemberType);
+        }
+
         private static TransitionerUtility _instance = null;
 
         public static TransitionerUtility GetInstance()
         {
             if (_instance == null)
             {
-                GameObject go = new GameObject("Lairinus.TransitionerUtility");
-                _instance = go.AddComponent<TransitionerUtility>();
+                _instance = GameObject.FindObjectOfType<TransitionerUtility>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("Lairinus.TransitionerUtility");
+                    _instance = go.AddComponent<TransitionerUtility>();
+                }
                 _instance.PopulateTypeDictionary();
             }
 
             return _instance;
+        }
+
+        public static bool CanBeLerped(AvailableMemberTypes type)
+        {
+            switch (type)
+            {
+                case AvailableMemberTypes.Boolean:
+                case AvailableMemberTypes.Character:
+                case AvailableMemberTypes.Component:
+                case AvailableMemberTypes.AnimationCurve:
+                case AvailableMemberTypes.Enum:
+                case AvailableMemberTypes.ObjectReference:
+                case AvailableMemberTypes.UnityObject:
+                    return false;
+
+                default:
+                    return true;
+            }
         }
 
         private void PopulateTypeDictionary()

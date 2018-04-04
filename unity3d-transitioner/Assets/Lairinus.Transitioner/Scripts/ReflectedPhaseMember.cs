@@ -22,31 +22,28 @@ namespace Lairinus.Transitions
             _sf_memberType = memberType;
             _sf_parentComponent = _parentComponent;
             _sf_memberName = _memberName;
-            _sf_type = type;
-            _typeString = _sf_type.ToString();
+            if (TransitionerUtility.GetInstance().typesDictionary.ContainsKey(type))
+                _sf_serializedPropertyType = TransitionerUtility.GetInstance().typesDictionary[type];
         }
 
-        private string _typeString = "";
         [SerializeField] private MemberType _sf_memberType = MemberType.Field;
         [SerializeField] private TransitionerUtility.AvailableMemberTypes _sf_serializedPropertyType = new TransitionerUtility.AvailableMemberTypes();
         [SerializeField] private Component _sf_parentComponent = null;
         [SerializeField] private string _sf_memberName = "";
         [SerializeField] private string _sf_memberValueString = "";
-        [SerializeField] private Type _sf_type = null;
+        [SerializeField] private bool _sf_isEnabled = true;
+        [SerializeField] private bool _sf_canBeLerped = false;
         public Component parentComponent { get { return _sf_parentComponent; } }
         public string memberName { get { return _sf_memberName; } }
         public PropertyInfo property { get; private set; }
+        public TransitionerUtility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
+        public bool isEnabled { get { return _sf_isEnabled; } }
 
         public FieldInfo field { get; private set; }
         public MemberType memberType { get { return _sf_memberType; } }
-        public Type type { get { return _sf_type; } }
 
         public object GetMemberValue(SerializedPropertyType type)
         {
-            switch (_typeString)
-            {
-            }
-
             return null;
         }
     }

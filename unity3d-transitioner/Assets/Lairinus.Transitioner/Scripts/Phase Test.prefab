@@ -71,46 +71,78 @@ MonoBehaviour:
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: eulerAngles
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: forward
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: hasChanged
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: hierarchyCapacity
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: eulerAngles
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: forward
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: eulerAngles
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: forward
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 4424225861436044}
       _sf_memberName: eulerAngles
       _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 0
+      _sf_parentComponent: {fileID: 4424225861436044}
+      _sf_memberName: eulerAngles
+      _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 0
+      _sf_parentComponent: {fileID: 4424225861436044}
+      _sf_memberName: forward
+      _sf_memberValueString: 
+      _sf_isEnabled: 0
+      _sf_canBeLerped: 0
   - _sf_enabled: 0
     _sf_name: Phase 2
     _sf_delay: 0

@@ -58,7 +58,7 @@ namespace Lairinus.Transitions
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
             GUILayout.Space(horizontalSpace);
-            GUIContent buttonContent = new GUIContent(reflectedPhaseMember.memberName + "\n\n(" + reflectedPhaseMember.type.FullName + ")", "Add this " + reflectedPhaseMember.memberType.ToString() + " to your current Phase!");
+            GUIContent buttonContent = new GUIContent(reflectedPhaseMember.memberName + "\n\n(" + reflectedPhaseMember.serializedMemberType.ToString() + ")", "Add this " + reflectedPhaseMember.serializedMemberType.ToString() + " to your current Phase!");
             if (GUILayout.Button(buttonContent))
             {
                 HandleOnClick_WriteSelectedPropertyToPhase(reflectedPhaseMember);
@@ -70,19 +70,25 @@ namespace Lairinus.Transitions
 
         private void HandleOnClick_WriteSelectedPropertyToPhase(ReflectedPhaseMember reflectedPhaseMember)
         {
-            Debug.Log("Property " + reflectedPhaseMember.memberName + " added to current Phase!");
             if (_currentSelectedPhaseProperty == null)
                 return;
 
             // Set members
             SerializedProperty reflectedPropertiesList = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_reflectedMembers");
             reflectedPropertiesList.arraySize++;
+            SerializedProperty reflectedMemberSingle = reflectedPropertiesList.GetArrayElementAtIndex(reflectedPropertiesList.arraySize - 1);
+            SerializedProperty rmMemberType = reflectedMemberSingle.FindPropertyRelative("_sf_memberType");
+            SerializedProperty rmMemberSerializedType = reflectedMemberSingle.FindPropertyRelative("_sf_serializedPropertyType");
+            SerializedProperty rmMemberName = reflectedMemberSingle.FindPropertyRelative("_sf_memberName");
+            SerializedProperty rmParentComponent = reflectedMemberSingle.FindPropertyRelative("_sf_parentComponent");
+            SerializedProperty rmCanBeLerped = reflectedMemberSingle.FindPropertyRelative("_sf_canBeLerped");
+            rmMemberType.enumValueIndex = (int)reflectedPhaseMember.memberType;
+            rmMemberSerializedType.enumValueIndex = (int)reflectedPhaseMember.serializedMemberType;
+            rmMemberName.stringValue = reflectedPhaseMember.memberName;
+            rmParentComponent.objectReferenceValue = reflectedPhaseMember.parentComponent;
+            rmCanBeLerped.boolValue = TransitionerUtility.CanBeLerped(reflectedPhaseMember.serializedMemberType);
             serializedObject.ApplyModifiedProperties();
-
-            UITransitioner tran = (UITransitioner)target;
-            tran.phases[_currentlySelectedPhaseIndex].reflectedMembers[reflectedPropertiesList.arraySize - 1] = reflectedPhaseMember;
-            serializedObject.ApplyModifiedProperties();
-            Debug.Log(tran.phases[_currentlySelectedPhaseIndex].reflectedMembers.Count);
+            OpenPage(Pages.PropertyManager);
         }
 
         private void DisplayComponentSelectUI(Component reflectedComponent)

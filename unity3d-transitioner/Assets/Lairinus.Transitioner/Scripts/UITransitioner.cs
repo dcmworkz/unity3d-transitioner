@@ -5,6 +5,7 @@ using System.Reflection;
 
 namespace Lairinus.Transitions
 {
+    [ExecuteInEditMode]
     public class UITransitioner : MonoBehaviour
     {
         [SerializeField] private GameObject _sf_targetGameObject = null;
@@ -36,6 +37,10 @@ namespace Lairinus.Transitions
         private void Awake()
         {
             Debug.Log(transform.name + _sf_phases[0].reflectedMembers.Count);
+            foreach (ReflectedPhaseMember mem in _sf_phases[0].reflectedMembers)
+            {
+                //Debug.Log(mem.memberName);
+            }
         }
     }
 }
