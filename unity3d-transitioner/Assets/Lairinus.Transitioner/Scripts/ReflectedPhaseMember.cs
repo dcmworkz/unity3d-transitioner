@@ -31,15 +31,48 @@ namespace Lairinus.Transitions
         [SerializeField] private Component _sf_parentComponent = null;
         [SerializeField] private string _sf_memberName = "";
         [SerializeField] private string _sf_memberValueString = "";
-        [SerializeField] private bool _sf_isEnabled = true;
+        [SerializeField] private bool _sf_isDisabled = false;
         [SerializeField] private bool _sf_canBeLerped = false;
         public Component parentComponent { get { return _sf_parentComponent; } }
         public string memberName { get { return _sf_memberName; } }
         public PropertyInfo property { get; private set; }
-        public TransitionerUtility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
-        public bool isEnabled { get { return _sf_isEnabled; } }
-
         public FieldInfo field { get; private set; }
+        public TransitionerUtility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
+        public bool isDisabled { get { return _sf_isDisabled; } }
+
+        public void SetValue(object value)
+        {
+            try
+            {
+                if (field == null && property == null)
+                    AssignReflectedMemberFields();
+
+                if (_sf_memberType == MemberType.Field && field != null)
+                    field.SetValue(_sf_parentComponent, value);
+                else if (_sf_memberType == MemberType.Property && property != null)
+                    property.SetValue(_sf_parentComponent, value, null);
+            }
+            catch { }
+        }
+
+        private void AssignReflectedMemberFields()
+        {
+            if (_sf_parentComponent == null)
+                return;
+
+            if (_sf_memberType == MemberType.Property)
+            {
+                if (property == null)
+                    property = _sf_parentComponent.GetType().GetProperty(_sf_memberName);
+            }
+
+            if (_sf_memberType == MemberType.Field)
+            {
+                if (field == null)
+                    field = _sf_parentComponent.GetType().GetField(_sf_memberName);
+            }
+        }
+
         public MemberType memberType { get { return _sf_memberType; } }
 
         public object GetMemberValue(SerializedPropertyType type)

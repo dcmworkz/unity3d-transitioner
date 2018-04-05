@@ -10,10 +10,11 @@ namespace Lairinus.Transitions.Internal
     {
         private Dictionary<Type, AvailableMemberTypes> _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
         public Dictionary<Type, AvailableMemberTypes> typesDictionary { get { return _typesDictionary; } }
+        private Dictionary<AvailableMemberTypes, Type> _reverseTypeDictionary = new Dictionary<AvailableMemberTypes, Type>();
+        public Dictionary<AvailableMemberTypes, Type> reverseTypeDictionary { get { return _reverseTypeDictionary; } }
 
         public enum AvailableMemberTypes
         {
-            Generic = -1,
             Integer = 0,
             Boolean = 1,
             Float = 2,
@@ -26,15 +27,10 @@ namespace Lairinus.Transitions.Internal
             Vector3 = 9,
             Vector4 = 10,
             ArraySize = 12,
-            Character = 13,
-            AnimationCurve = 14,
             Quaternion = 17,
-            ExposedReference = 18,
             FixedBufferSize = 19,
             Vector2Int = 20,
             Vector3Int = 21,
-            UnityObject = 22,
-            Component = 26
         }
 
         public static string GetAvailableMemberName(int availableMemberType)
@@ -65,12 +61,7 @@ namespace Lairinus.Transitions.Internal
             switch (type)
             {
                 case AvailableMemberTypes.Boolean:
-                case AvailableMemberTypes.Character:
-                case AvailableMemberTypes.Component:
-                case AvailableMemberTypes.AnimationCurve:
                 case AvailableMemberTypes.Enum:
-                case AvailableMemberTypes.ObjectReference:
-                case AvailableMemberTypes.UnityObject:
                     return false;
 
                 default:
@@ -89,8 +80,15 @@ namespace Lairinus.Transitions.Internal
             _typesDictionary.Add(typeof(Vector2), AvailableMemberTypes.Vector2);
             _typesDictionary.Add(typeof(Vector3), AvailableMemberTypes.Vector3);
             _typesDictionary.Add(typeof(Vector4), AvailableMemberTypes.Vector4);
-            _typesDictionary.Add(typeof(char), AvailableMemberTypes.Character);
-            _typesDictionary.Add(typeof(UnityEngine.Object), AvailableMemberTypes.UnityObject);
+
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Integer, typeof(int));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Boolean, typeof(bool));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Float, typeof(float));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.String, typeof(string));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Color, typeof(Color));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector2, typeof(Vector2));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector3, typeof(Vector3));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector4, typeof(Vector4));
         }
 
         public static T GetObject<T>(string str)
@@ -121,10 +119,11 @@ namespace Lairinus.Transitions.Internal
                     return (T)Convert.ChangeType(float.Parse(str), type);
 
                 case AvailableMemberTypes.Boolean:
-                    return (T)Convert.ChangeType(bool.Parse(str), type);
-
-                case AvailableMemberTypes.Character:
-                    return (T)Convert.ChangeType(char.Parse(str), type);
+                    {
+                        bool tryparse = false;
+                        bool.TryParse(str, out tryparse);
+                        return (T)Convert.ChangeType(tryparse, type);
+                    }
 
                 case AvailableMemberTypes.Color:
                     return (T)Convert.ChangeType(ConvertStringToColor(str), type);
@@ -136,6 +135,9 @@ namespace Lairinus.Transitions.Internal
 
         private static Vector3 ConvertStringToVector3(string sVector)
         {
+            if (sVector == null || sVector == "")
+                return new Vector3();
+
             // Remove the parentheses
             if (sVector.StartsWith("(") && sVector.EndsWith(")"))
             {
@@ -156,6 +158,9 @@ namespace Lairinus.Transitions.Internal
 
         private static Color ConvertStringToColor(string sColor)
         {
+            if (sColor == null || sColor == "")
+                return Color.white;
+
             // expected string input is "RGBA(0.000,0.000,0.000,0.000)"
             if (sColor.StartsWith("RGBA(") && sColor.EndsWith(")"))
             {
@@ -173,6 +178,9 @@ namespace Lairinus.Transitions.Internal
 
         private static Vector4 ConvertStringToVector4(string sVector)
         {
+            if (sVector == null || sVector == "")
+                return new Vector4();
+
             // expected string input is "(0,0,0)"
             if (sVector.StartsWith("(") && sVector.EndsWith(")"))
             {
@@ -191,6 +199,9 @@ namespace Lairinus.Transitions.Internal
 
         private static Vector2 ConvertStringToVector2(string sVector)
         {
+            if (sVector == null || sVector == "")
+                return new Vector2();
+
             // expected string input is "(0,0)"
             if (sVector.StartsWith("(") && sVector.EndsWith(")"))
             {
@@ -207,13 +218,6 @@ namespace Lairinus.Transitions.Internal
 
         private void Start()
         {
-            Color c = new Color();
-            c.r = .8f;
-            string s = c.ToString();
-            string up = Vector3.up.ToString();
-            Vector3 @new = GetObject<Vector3>(up);
-            Color @color = GetObject<Color>(s);
-            int i = 0;
         }
     }
 }

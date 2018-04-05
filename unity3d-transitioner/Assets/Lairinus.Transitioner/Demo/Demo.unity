@@ -193,7 +193,7 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -203,17 +203,17 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.size
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.size
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.size
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -270,22 +270,22 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_name
-      value: dfadsfa
+      value: Phase 1
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_name
-      value: asdfasdf
+      value: Phase 1
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_name
-      value: asdfasdf
+      value: asdf 3
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[3]._sf_name
-      value: asdfasdf
+      value: asdf 3
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -295,27 +295,27 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_memberName
-      value: hasChanged
+      value: eulerAngles
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_parentComponent
       value: 
-      objectReference: {fileID: 1103058028}
+      objectReference: {fileID: 1715990501}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_memberName
-      value: position
+      value: vector3Prop
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_parentComponent
       value: 
-      objectReference: {fileID: 1103058028}
+      objectReference: {fileID: 1715990501}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_memberName
-      value: up
+      value: name
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -401,21 +401,21 @@ Prefab:
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_parentComponent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1715990501}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_memberName
-      value: hierarchyCapacity
+      value: useGUILayout
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[1]._sf_parentComponent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1103058028}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[1]._sf_memberName
-      value: name
+      value: position
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -446,7 +446,7 @@ Prefab:
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[0]._sf_parentComponent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1103058028}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[0]._sf_memberName
@@ -456,11 +456,11 @@ Prefab:
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[1]._sf_parentComponent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1103058028}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[1]._sf_memberName
-      value: name
+      value: position
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -531,7 +531,7 @@ Prefab:
         type: 2}
       propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.data[0]._sf_parentComponent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1103058028}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.data[0]._sf_memberName
@@ -710,17 +710,17 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_serializedPropertyType
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_serializedPropertyType
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_serializedPropertyType
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -735,12 +735,12 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_serializedPropertyType
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[1]._sf_serializedPropertyType
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -765,7 +765,7 @@ Prefab:
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
       propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[1]._sf_serializedPropertyType
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
         type: 2}
@@ -917,6 +917,146 @@ Prefab:
       propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_canBeLerped
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[1]._sf_canBeLerped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_isEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_memberValueString
+      value: (0.0, 0.0, 0.0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_memberType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_canBeLerped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_memberValueString
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_isEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_memberType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_memberValueString
+      value: (0.0, 0.0, 0.0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_memberType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_canBeLerped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[1]._sf_canBeLerped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[0]._sf_memberValueString
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[1]._sf_memberValueString
+      value: (0.0, 0.0, 0.0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[0]._sf_canBeLerped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.data[0]._sf_memberType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.data[0]._sf_canBeLerped
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.data[0]._sf_memberValueString
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_memberValueString
+      value: False
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[1]._sf_memberValueString
+      value: (0.0, 0.0, 0.0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[0]._sf_memberType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_memberType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_canBeLerped
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[3]._sf_reflectedMembers.Array.data[0]._sf_isEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[2]._sf_reflectedMembers.Array.data[0]._sf_isEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[0]._sf_duration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_duration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
+        type: 2}
+      propertyPath: _sf_phases.Array.data[1]._sf_reflectedMembers.Array.data[0]._sf_isDisabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
   m_IsPrefabParent: 0
@@ -1000,179 +1140,56 @@ MonoBehaviour:
   _sf_enableTransition: 0
   _sf_loop: 0
   _sf_phases:
-  - _sf_enabled: 0
-    _sf_name: Phase 3
+  - _sf_disabled: 0
+    _sf_name: Phase 1
     _sf_delay: 0
     _sf_duration: 0
     _sf_lerpPlaystyleType:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
       m_RotationOrder: 0
     _sf_reflectedMembers:
     - _sf_memberType: 0
-      _sf_serializedPropertyType: 0
-      _sf_parentComponent: {fileID: 1521046638}
-      _sf_memberName: eulerAngles
+      _sf_serializedPropertyType: 8
+      _sf_parentComponent: {fileID: 1521046639}
+      _sf_memberName: center
       _sf_memberValueString: 
-      _sf_isEnabled: 0
-      _sf_canBeLerped: 0
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 0
-      _sf_parentComponent: {fileID: 1521046638}
-      _sf_memberName: forward
-      _sf_memberValueString: 
-      _sf_isEnabled: 0
-      _sf_canBeLerped: 0
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
       _sf_parentComponent: {fileID: 1521046639}
-      _sf_memberName: contactOffset
+      _sf_memberName: enabled
       _sf_memberValueString: 
-      _sf_isEnabled: 0
+      _sf_isDisabled: 0
       _sf_canBeLerped: 0
-  - _sf_enabled: 0
-    _sf_name: Phase 5
+  - _sf_disabled: 0
+    _sf_name: Phase 1
     _sf_delay: 0
     _sf_duration: 0
     _sf_lerpPlaystyleType:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers: []
-  - _sf_enabled: 0
-    _sf_name: Phase 6
-    _sf_delay: 0
-    _sf_duration: 0
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
       m_RotationOrder: 0
     _sf_reflectedMembers:
     - _sf_memberType: 0
-      _sf_serializedPropertyType: 0
-      _sf_parentComponent: {fileID: 1521046638}
-      _sf_memberName: eulerAngles
+      _sf_serializedPropertyType: 8
+      _sf_parentComponent: {fileID: 1521046639}
+      _sf_memberName: center
       _sf_memberValueString: 
-      _sf_isEnabled: 0
-      _sf_canBeLerped: 0
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
     - _sf_memberType: 0
       _sf_serializedPropertyType: 0
-      _sf_parentComponent: {fileID: 1521046638}
-      _sf_memberName: position
+      _sf_parentComponent: {fileID: 1521046639}
+      _sf_memberName: enabled
       _sf_memberValueString: 
-      _sf_isEnabled: 0
+      _sf_isDisabled: 0
       _sf_canBeLerped: 0
-  - _sf_enabled: 0
-    _sf_name: Phase 6
-    _sf_delay: 0
-    _sf_duration: 0
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers: []
-  - _sf_enabled: 0
-    _sf_name: Phase 6
-    _sf_delay: 0
-    _sf_duration: 0
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers: []
-  - _sf_enabled: 0
-    _sf_name: Phase 6
-    _sf_delay: 0
-    _sf_duration: 0
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers: []
 --- !u!81 &1521046635
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1489,3 +1506,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1698323346046524, guid: 40d9646efc3c26c40a2a0e1e2356faac,
     type: 2}
   m_PrefabInternal: {fileID: 989170748}
+--- !u!114 &1715990501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1715990500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99b559a6a559bf4f8ffdab237c07303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vector4pProp: {x: 0, y: 0, z: 0, w: 0}
+  newColorProp: {r: 0, g: 0, b: 0, a: 0}
+  newBoolProp: 0

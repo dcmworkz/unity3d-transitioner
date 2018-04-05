@@ -171,14 +171,14 @@ namespace Lairinus.Transitions
             if (_currentSelectedPhaseProperty == null)
                 return;
 
-            SerializedProperty phaseEnabled = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_enabled");
+            SerializedProperty phaseDisabled = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_disabled");
             SerializedProperty phaseName = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_name");
             SerializedProperty phaseDelay = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_delay");
             SerializedProperty phaseDuration = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_duration");
             SerializedProperty lerpPlaystyleType = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_lerpPlaystyleType");
 
             List<Action> actions = new List<Action>();
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseEnabled, new GUIContent("Enabled"), 20, false, true)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDisabled, new GUIContent("Disabled"), 20, false, true)));
             actions.Add(new Action(() => DisplayHorizontalProperty(phaseName, new GUIContent("Name"), 20, true, false)));
             actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, new GUIContent("Delay"), 20, true, false)));
             actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, new GUIContent("Duration"), 20, true, false)));

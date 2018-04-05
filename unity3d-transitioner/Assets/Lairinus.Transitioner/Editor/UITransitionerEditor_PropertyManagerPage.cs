@@ -46,35 +46,100 @@ namespace Lairinus.Transitions
         private void DisplayPhaseMember(int index, SerializedProperty reflectedMemberSingle, SerializedProperty reflectedPhaseMembersListProperty)
         {
             SerializedProperty rmMemberType = reflectedMemberSingle.FindPropertyRelative("_sf_memberType");
-            SerializedProperty rmMemberSerializedType = reflectedMemberSingle.FindPropertyRelative("_sf_serializedPropertyType");
+            SerializedProperty rmAvailableMemberTypeEnum = reflectedMemberSingle.FindPropertyRelative("_sf_serializedPropertyType");
             SerializedProperty rmMemberName = reflectedMemberSingle.FindPropertyRelative("_sf_memberName");
             SerializedProperty rmParentComponent = reflectedMemberSingle.FindPropertyRelative("_sf_parentComponent");
-            SerializedProperty rmIsEnabled = reflectedMemberSingle.FindPropertyRelative("_sf_isEnabled");
-            SerializedProperty rmCanBeLerped = reflectedMemberSingle.FindPropertyRelative("sf_canBeLerped");
+            SerializedProperty rmIsDisabled = reflectedMemberSingle.FindPropertyRelative("_sf_isDisabled");
+            SerializedProperty rmCanBeLerped = reflectedMemberSingle.FindPropertyRelative("_sf_canBeLerped");
+            SerializedProperty rmStringValue = reflectedMemberSingle.FindPropertyRelative("_sf_memberValueString");
 
             GUILayout.Space(20);
-            //if (!rmCanBeLerped.boolValue)
-            //{
-            //    EditorGUILayout.HelpBox("This property cannot be lerped. Instead, this property will be set at the end of the Phase", MessageType.Info);
-            //}
-
-            EditorGUILayout.LabelField(rmMemberName.stringValue + " - " + TransitionerUtility.GetAvailableMemberName(rmMemberSerializedType.enumValueIndex));
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Space(20);
-
-            EditorGUILayout.BeginVertical(GUI.skin.box);
+            EditorGUILayout.LabelField(rmMemberName.stringValue + " - " + TransitionerUtility.GetAvailableMemberName(rmAvailableMemberTypeEnum.enumValueIndex), EditorStyles.boldLabel);
+            if (!rmCanBeLerped.boolValue)
+                EditorGUILayout.HelpBox("This value type cannot be lerped. The value will be set at the end of this phase", MessageType.Info);
+            EditorGUILayout.Space();
+            EditorGUILayout.PropertyField(rmIsDisabled, new GUIContent("Disabled"));
+            EditorGUILayout.Space();
+            ShowProperty(rmStringValue, rmAvailableMemberTypeEnum);
+            EditorGUILayout.Space();
             GUILayout.Space(5);
-
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Space(20);
-            EditorGUILayout.PropertyField(rmIsEnabled, new GUIContent("Is Enabled"));
-            EditorGUILayout.EndHorizontal();
-
-            GUILayout.Space(5);
-            EditorGUILayout.EndVertical();
-            GUILayout.Space(20);
-            EditorGUILayout.EndHorizontal();
             DisplayMainButton(new GUIContent("Remove Member", "Removes this member from the Phase"), _editorStyles.lairinusRed, new Action(() => OnHandleClick_RemovePhaseMember(reflectedPhaseMembersListProperty, index)));
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void ShowProperty(SerializedProperty stringValueProperty, SerializedProperty availableMemberTypeEnum)
+        {
+            TransitionerUtility.AvailableMemberTypes type = (TransitionerUtility.AvailableMemberTypes)availableMemberTypeEnum.enumValueIndex;
+            string valueString = stringValueProperty.stringValue;
+            GUIContent valueContent = new GUIContent("Value", "The final value that this member will attempt to lerp to");
+            if (valueString == null)
+                return;
+
+            switch (type)
+            {
+                case TransitionerUtility.AvailableMemberTypes.Float:
+                    {
+                        float value = 0;
+                        float.TryParse(valueString, out value);
+                        value = EditorGUILayout.FloatField(valueContent, value);
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.Integer:
+                    {
+                        int value = 0;
+                        int.TryParse(valueString, out value);
+                        value = EditorGUILayout.IntField(valueContent, value);
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.Boolean:
+                    {
+                        bool value = TransitionerUtility.GetObject<bool>(valueString);
+                        value = EditorGUILayout.Toggle(valueContent, value);
+                        stringValueProperty.stringValue = value.ToString();
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.Color:
+                    {
+                        Color value = TransitionerUtility.GetObject<Color>(valueString);
+                        value = EditorGUILayout.ColorField(valueContent, value);
+                        stringValueProperty.stringValue = value.ToString();
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.String:
+                    {
+                        valueString = EditorGUILayout.TextField(valueContent, valueString);
+                        stringValueProperty.stringValue = valueString;
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.Vector2:
+                    {
+                        Vector2 value = TransitionerUtility.GetObject<Vector2>(valueString);
+                        value = EditorGUILayout.Vector2Field(valueContent, value);
+                        stringValueProperty.stringValue = value.ToString();
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.Vector3:
+                    {
+                        Vector3 value = TransitionerUtility.GetObject<Vector3>(valueString);
+                        value = EditorGUILayout.Vector3Field(valueContent, value);
+                        stringValueProperty.stringValue = value.ToString();
+                        break;
+                    }
+
+                case TransitionerUtility.AvailableMemberTypes.Vector4:
+                    {
+                        Vector4 value = TransitionerUtility.GetObject<Vector4>(valueString);
+                        value = EditorGUILayout.Vector4Field(valueContent, value);
+                        stringValueProperty.stringValue = value.ToString();
+                        break;
+                    }
+            }
             serializedObject.ApplyModifiedProperties();
         }
 

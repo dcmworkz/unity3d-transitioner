@@ -20,7 +20,7 @@ namespace Lairinus.Transitions
         [System.Serializable]
         public class Phase
         {
-            [SerializeField] private bool _sf_enabled = true;
+            [SerializeField] private bool _sf_disabled = false;
             [SerializeField] private string _sf_name = "New Phase";
             [SerializeField] private float _sf_delay = 0;
             [SerializeField] private float _sf_duration = 0;
@@ -29,7 +29,7 @@ namespace Lairinus.Transitions
             public float duration { get { return _sf_duration; } set { _sf_duration = value; } }
             public float delay { get { return _sf_delay; } }
             public string name { get { return _sf_name; } set { _sf_name = value; } }
-            public bool enabled { get { return _sf_enabled; } set { _sf_enabled = value; } }
+            public bool disabled { get { return _sf_disabled; } set { _sf_disabled = value; } }
             public AnimationCurve lerpPlaystyleType { get { return _sf_lerpPlaystyleType; } }
             public List<ReflectedPhaseMember> reflectedMembers { get { return _sf_reflectedMembers; } }
         }
