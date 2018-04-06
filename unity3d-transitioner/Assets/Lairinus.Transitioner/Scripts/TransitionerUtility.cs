@@ -133,6 +133,48 @@ namespace Lairinus.Transitions.Internal
             }
         }
 
+        public static object GetObject(Type _type, string str)
+        {
+            Type type = _type;
+            if (!GetInstance().typesDictionary.ContainsKey(type))
+                return new object();
+
+            AvailableMemberTypes memberType = GetInstance().typesDictionary[type];
+            switch (memberType)
+            {
+                case AvailableMemberTypes.Vector2:
+                    return ConvertStringToVector2(str);
+
+                case AvailableMemberTypes.Vector3:
+                    return ConvertStringToVector3(str);
+
+                case AvailableMemberTypes.Vector4:
+                    return ConvertStringToVector4(str);
+
+                case AvailableMemberTypes.String:
+                    return str;
+
+                case AvailableMemberTypes.Integer:
+                    return int.Parse(str);
+
+                case AvailableMemberTypes.Float:
+                    return float.Parse(str);
+
+                case AvailableMemberTypes.Boolean:
+                    {
+                        bool tryparse = false;
+                        bool.TryParse(str, out tryparse);
+                        return tryparse;
+                    }
+
+                case AvailableMemberTypes.Color:
+                    return ConvertStringToColor(str);
+
+                default:
+                    return new object();
+            }
+        }
+
         private static Vector3 ConvertStringToVector3(string sVector)
         {
             if (sVector == null || sVector == "")

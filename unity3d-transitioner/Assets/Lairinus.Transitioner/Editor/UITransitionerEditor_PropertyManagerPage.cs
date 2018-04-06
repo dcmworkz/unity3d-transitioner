@@ -54,17 +54,53 @@ namespace Lairinus.Transitions
             SerializedProperty rmStringValue = reflectedMemberSingle.FindPropertyRelative("_sf_memberValueString");
 
             GUILayout.Space(20);
-            EditorGUILayout.LabelField(rmMemberName.stringValue + " - " + TransitionerUtility.GetAvailableMemberName(rmAvailableMemberTypeEnum.enumValueIndex), EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(rmParentComponent.objectReferenceValue.GetType().ToString(), EditorStyles.largeLabel, GUILayout.Height(25));
+            EditorGUILayout.LabelField(rmMemberName.stringValue + " - " + TransitionerUtility.GetAvailableMemberName(rmAvailableMemberTypeEnum.enumValueIndex), EditorStyles.boldLabel, GUILayout.Height(30));
             if (!rmCanBeLerped.boolValue)
                 EditorGUILayout.HelpBox("This value type cannot be lerped. The value will be set at the end of this phase", MessageType.Info);
+            EditorGUILayout.BeginVertical(GUI.skin.box);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(rmIsDisabled, new GUIContent("Disabled"));
             EditorGUILayout.Space();
             ShowProperty(rmStringValue, rmAvailableMemberTypeEnum);
+            ShowGetSetButtons(index, rmStringValue);
             EditorGUILayout.Space();
             GUILayout.Space(5);
             DisplayMainButton(new GUIContent("Remove Member", "Removes this member from the Phase"), _editorStyles.lairinusRed, new Action(() => OnHandleClick_RemovePhaseMember(reflectedPhaseMembersListProperty, index)));
+            GUILayout.Space(10);
+            EditorGUILayout.EndVertical();
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void ShowGetSetButtons(int index, SerializedProperty reflectedMemberSingleValue)
+        {
+            try
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.BeginHorizontal();
+                UITransitioner targetObject = (UITransitioner)target;
+                if (GUILayout.Button(new GUIContent("Get Value")))
+                {
+                    object value = targetObject.phases[_currentlySelectedPhaseIndex].reflectedMembers[index].GetValue();
+                    if (value != null)
+                        reflectedMemberSingleValue.stringValue = value.ToString();
+
+                    serializedObject.ApplyModifiedProperties();
+                }
+
+                if (GUILayout.Button(new GUIContent("Set Value")))
+                {
+                    ReflectedPhaseMember member = targetObject.phases[_currentlySelectedPhaseIndex].reflectedMembers[index];
+                    Type type = TransitionerUtility.GetInstance().reverseTypeDictionary[member.serializedMemberType];
+                    object value = TransitionerUtility.GetObject(type, reflectedMemberSingleValue.stringValue);
+                    targetObject.phases[_currentlySelectedPhaseIndex].reflectedMembers[index].SetValue(value);
+                    serializedObject.ApplyModifiedProperties();
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            catch (System.Exception ex)
+            {
+            }
         }
 
         private void ShowProperty(SerializedProperty stringValueProperty, SerializedProperty availableMemberTypeEnum)

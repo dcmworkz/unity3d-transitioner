@@ -55,6 +55,16 @@ namespace Lairinus.Transitions
             catch { }
         }
 
+        public object GetValue()
+        {
+            AssignReflectedMemberFields();
+            if (_sf_memberType == MemberType.Field && field != null)
+                return field.GetValue(_sf_parentComponent);
+            else if (_sf_memberType == MemberType.Property && property != null)
+                return property.GetValue(_sf_parentComponent, null);
+            else return null;
+        }
+
         private void AssignReflectedMemberFields()
         {
             if (_sf_parentComponent == null)

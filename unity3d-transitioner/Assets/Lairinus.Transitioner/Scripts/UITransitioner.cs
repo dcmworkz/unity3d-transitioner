@@ -36,7 +36,6 @@ namespace Lairinus.Transitions
 
         private void Awake()
         {
-            Debug.Log(transform.name + _sf_phases[0].reflectedMembers.Count);
             foreach (ReflectedPhaseMember mem in _sf_phases[0].reflectedMembers)
             {
                 //Debug.Log(mem.memberName);
