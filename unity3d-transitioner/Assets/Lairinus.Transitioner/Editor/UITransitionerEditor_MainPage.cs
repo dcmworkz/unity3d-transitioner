@@ -20,11 +20,11 @@ namespace Lairinus.Transitions
         private void DrawBasicSettings()
         {
             GUIContent targetGameObjectContent = new GUIContent("GameObject", "The GameObject that will handle all of the Transitions and Phases");
-            GUIContent transitionEnabledContent = new GUIContent("Transition Enabled", "Determines if whether the current Transition can be processed or not");
+            GUIContent transitionEnabledContent = new GUIContent("Disable", "Determines if whether the current Transition can be processed or not");
             GUIContent transitionLoopedContent = new GUIContent("Loop", "If enabled, the transition will continuously play until it is manually stopped, or this property gets disabled");
 
             Action targetGOProperty = () => DisplayHorizontalProperty(_targetGameObject, targetGameObjectContent, 20, false, true);
-            Action enableTransitionProperty = () => DisplayHorizontalProperty(_enableTransition, transitionEnabledContent, 20, false, true);
+            Action enableTransitionProperty = () => DisplayHorizontalProperty(disableTransition, transitionEnabledContent, 20, false, true);
             Action loopProperty = () => DisplayHorizontalProperty(_loop, transitionLoopedContent, 20, false, false);
             Action[] actions = { targetGOProperty, enableTransitionProperty, loopProperty };
             DisplaySettingBox("Basic Settings", actions, 20);

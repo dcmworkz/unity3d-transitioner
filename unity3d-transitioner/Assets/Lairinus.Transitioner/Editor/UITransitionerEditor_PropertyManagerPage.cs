@@ -11,14 +11,11 @@ namespace Lairinus.Transitions
 {
     public partial class UITransitionerEditor : Editor
     {
-        private UITransitioner thisObject = null;
-
         private void DrawPropertyManagerPage()
         {
             if (_currentPage != Pages.PropertyManager)
                 return;
 
-            thisObject = (UITransitioner)target;
             Action openPage = new Action(() => OpenPage(Pages.Phases));
             DisplayMainButton(new GUIContent("Back", "Returns to the Phases page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
 
@@ -32,7 +29,6 @@ namespace Lairinus.Transitions
         {
             if (_currentSelectedPhaseProperty != null)
             {
-                List<Action> phasePropertyActions = new List<Action>();
                 SerializedProperty reflectedMembersListProperty = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_reflectedMembers");
                 for (var a = 0; a < reflectedMembersListProperty.arraySize; a++)
                 {
@@ -45,7 +41,6 @@ namespace Lairinus.Transitions
 
         private void DisplayPhaseMember(int index, SerializedProperty reflectedMemberSingle, SerializedProperty reflectedPhaseMembersListProperty)
         {
-            SerializedProperty rmMemberType = reflectedMemberSingle.FindPropertyRelative("_sf_memberType");
             SerializedProperty rmAvailableMemberTypeEnum = reflectedMemberSingle.FindPropertyRelative("_sf_serializedPropertyType");
             SerializedProperty rmMemberName = reflectedMemberSingle.FindPropertyRelative("_sf_memberName");
             SerializedProperty rmParentComponent = reflectedMemberSingle.FindPropertyRelative("_sf_parentComponent");
@@ -98,7 +93,7 @@ namespace Lairinus.Transitions
                 }
                 EditorGUILayout.EndHorizontal();
             }
-            catch (System.Exception ex)
+            catch
             {
             }
         }

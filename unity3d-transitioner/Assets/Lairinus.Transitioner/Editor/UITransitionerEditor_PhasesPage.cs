@@ -178,14 +178,33 @@ namespace Lairinus.Transitions
             SerializedProperty lerpPlaystyleType = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_lerpPlaystyleType");
 
             List<Action> actions = new List<Action>();
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDisabled, new GUIContent("Disabled"), 20, false, true)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseName, new GUIContent("Name"), 20, true, false)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, new GUIContent("Delay"), 20, true, false)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, new GUIContent("Duration"), 20, true, false)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(lerpPlaystyleType, new GUIContent("Animation Lerp"), 20, true, false, 50)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDisabled, new GUIContent("Disabled:"), 20, false, true)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseName, new GUIContent("Name:"), 20, true, false)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, new GUIContent("Delay:"), 20, true, false)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, new GUIContent("Duration:"), 20, true, false)));
+            actions.Add(new Action(() => ShowLerpCurve(lerpPlaystyleType, phaseDuration, phaseDelay)));
             actions.Add(new Action(() => DisplayMainButton(new GUIContent("Edit Properties", "Allows you to add Properties and Fields from this component to lerp or set"), _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.PropertyManager)), true, null, 20)));
 
             DisplaySettingBox("Phase Settings", actions.ToArray(), 20);
+        }
+
+        private void ShowLerpCurve(SerializedProperty lerpPlaystyleTypeProp, SerializedProperty durationProperty, SerializedProperty delayProperty)
+        {
+            if (durationProperty.floatValue <= 0)
+                return;
+
+            EditorGUILayout.Space();
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(20);
+            EditorGUILayout.LabelField("Animation Curve:");
+            AnimationCurve curve = lerpPlaystyleTypeProp.animationCurveValue;
+            Rect ranges = new Rect(delayProperty.floatValue, 0, durationProperty.floatValue, 100);
+            GUILayout.Space(20);
+            curve = EditorGUILayout.CurveField(curve, _editorStyles.lairinusBlue, ranges, GUILayout.Height(100), GUILayout.Width(150));
+            GUILayout.Space(20);
+            GUILayout.EndHorizontal();
+            lerpPlaystyleTypeProp.animationCurveValue = curve;
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }

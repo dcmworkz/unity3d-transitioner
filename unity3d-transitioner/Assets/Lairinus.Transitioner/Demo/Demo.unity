@@ -191,7 +191,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1715990500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62082577, y: -0.5993056, z: 8.461933}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sf_targetGameObject: {fileID: 819988163}
-  _sf_enableTransition: 0
+  _sf_disableTransition: 0
   _sf_loop: 0
   _sf_phases:
   - _sf_disabled: 0
@@ -717,13 +717,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sf_targetGameObject: {fileID: 1715990500}
-  _sf_enableTransition: 0
+  _sf_disableTransition: 0
   _sf_loop: 0
   _sf_phases:
   - _sf_disabled: 0
     _sf_name: Phase 1
     _sf_delay: 0
-    _sf_duration: 10
+    _sf_duration: 50
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 50
+        value: 100
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 9
+      _sf_parentComponent: {fileID: 1715990501}
+      _sf_memberName: vector3Prop
+      _sf_memberValueString: (0.0, 0.0, 0.0)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 1
+      _sf_parentComponent: {fileID: 1715990501}
+      _sf_memberName: enabled
+      _sf_memberValueString: False
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 0
+  - _sf_disabled: 0
+    _sf_name: Phase 2
+    _sf_delay: 0
+    _sf_duration: 0.1
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
@@ -746,32 +783,7 @@ MonoBehaviour:
     - _sf_memberType: 0
       _sf_serializedPropertyType: 9
       _sf_parentComponent: {fileID: 1103058028}
-      _sf_memberName: eulerAngles
-      _sf_memberValueString: (0.0, 0.0, 0.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: vector3Prop
-      _sf_memberValueString: (0.0, 0.0, 0.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-  - _sf_disabled: 0
-    _sf_name: Phase 2
-    _sf_delay: 0
-    _sf_duration: 0.1
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    _sf_reflectedMembers:
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
-      _sf_parentComponent: {fileID: 1103058028}
       _sf_memberName: forward
-      _sf_memberValueString: (0.0, 0.0, 0.0)
+      _sf_memberValueString: (0.0, 0.0, 1.0)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1

@@ -33,6 +33,8 @@ namespace Lairinus.Transitions
         [SerializeField] private string _sf_memberValueString = "";
         [SerializeField] private bool _sf_isDisabled = false;
         [SerializeField] private bool _sf_canBeLerped = false;
+        public bool canBeLerped { get { return _sf_canBeLerped; } }
+        protected string memberValueString { get { return _sf_memberValueString; } }
         public Component parentComponent { get { return _sf_parentComponent; } }
         public string memberName { get { return _sf_memberName; } }
         public PropertyInfo property { get; private set; }

@@ -9,10 +9,10 @@ namespace Lairinus.Transitions
     public class UITransitioner : MonoBehaviour
     {
         [SerializeField] private GameObject _sf_targetGameObject = null;
-        [SerializeField] private bool _sf_enableTransition = false;
+        [SerializeField] private bool _sf_disableTransition = false;
         [SerializeField] private bool _sf_loop = false;
         public GameObject targetGameObject { get { return _sf_targetGameObject; } set { _sf_targetGameObject = value; } }
-        public bool enableTransition { get { return _sf_enableTransition; } set { _sf_enableTransition = value; } }
+        public bool enableTransition { get { return _sf_disableTransition; } set { _sf_disableTransition = value; } }
         public bool loop { get { return _sf_loop; } set { _sf_loop = value; } }
         [SerializeField] private List<Phase> _sf_phases = new List<Phase>();
         public List<Phase> phases { get { return _sf_phases; } }
