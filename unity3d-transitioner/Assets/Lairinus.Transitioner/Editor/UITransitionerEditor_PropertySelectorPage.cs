@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿using Lairinus.Transitions.Internal;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEditorInternal;
-using Lairinus.Transitions.Internal;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
 
 namespace Lairinus.Transitions
 {
     public partial class UITransitionerEditor : Editor
     {
         private List<Action> _componentActions = new List<Action>();
-        private List<ReflectedPhaseMember> _allReflectedPhaseMembers = new List<ReflectedPhaseMember>();
+        private List<PhaseMember> _allReflectedPhaseMembers = new List<PhaseMember>();
         private Component _selectedComponent = null;
 
         private void DrawPage_PropertySelector()
@@ -24,16 +22,16 @@ namespace Lairinus.Transitions
             Action openPage = new Action(() => OpenPage(Pages.PropertyManager));
             DisplayMainButton(new GUIContent("Back", "Returns to the Property Manager page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
             _allReflectedPhaseMembers = _allReflectedPhaseMembers.OrderBy(x => x.memberName).ToList();
-            DisplaySettingBox("Components on GameObject", _componentActions.ToArray(), 20);
+            DisplaySettingBox(Helper.content_SettingsBoxTitle_ComponentsOnGameObject, _componentActions.ToArray(), 20);
             if (_selectedComponent != null)
             {
                 List<Action> reflectedPhaseMemberDisplayActions = new List<Action>();
-                foreach (ReflectedPhaseMember reflectedPhaseMember in _allReflectedPhaseMembers)
+                foreach (PhaseMember reflectedPhaseMember in _allReflectedPhaseMembers)
                 {
                     reflectedPhaseMemberDisplayActions.Add(new Action(() => DisplayReflectedPhaseMember(reflectedPhaseMember, 20, 10)));
                 }
 
-                DisplaySettingBox("Values on GameObject", reflectedPhaseMemberDisplayActions.ToArray(), 20);
+                DisplaySettingBox(Helper.content_SettingsBoxTitle_MembersOnGameObject, reflectedPhaseMemberDisplayActions.ToArray(), 20);
             }
         }
 
@@ -53,22 +51,21 @@ namespace Lairinus.Transitions
             }
         }
 
-        private void DisplayReflectedPhaseMember(ReflectedPhaseMember reflectedPhaseMember, float horizontalSpace = 20, float verticalSpace = 5)
+        private void DisplayReflectedPhaseMember(PhaseMember reflectedPhaseMember, float horizontalSpace = 20, float verticalSpace = 5)
         {
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
             GUILayout.Space(horizontalSpace);
             GUIContent buttonContent = new GUIContent(reflectedPhaseMember.memberName + "\n\n(" + reflectedPhaseMember.serializedMemberType.ToString() + ")", "Add this " + reflectedPhaseMember.serializedMemberType.ToString() + " to your current Phase!");
             if (GUILayout.Button(buttonContent))
-            {
                 HandleOnClick_WriteSelectedPropertyToPhase(reflectedPhaseMember);
-            }
+
             GUILayout.Space(horizontalSpace);
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
         }
 
-        private void HandleOnClick_WriteSelectedPropertyToPhase(ReflectedPhaseMember reflectedPhaseMember)
+        private void HandleOnClick_WriteSelectedPropertyToPhase(PhaseMember reflectedPhaseMember)
         {
             if (_currentSelectedPhaseProperty == null)
                 return;
@@ -86,7 +83,7 @@ namespace Lairinus.Transitions
             rmMemberSerializedType.enumValueIndex = (int)reflectedPhaseMember.serializedMemberType;
             rmMemberName.stringValue = reflectedPhaseMember.memberName;
             rmParentComponent.objectReferenceValue = reflectedPhaseMember.parentComponent;
-            rmCanBeLerped.boolValue = TransitionerUtility.CanBeLerped(reflectedPhaseMember.serializedMemberType);
+            rmCanBeLerped.boolValue = Utility.CanBeLerped(reflectedPhaseMember.serializedMemberType);
             serializedObject.ApplyModifiedProperties();
             OpenPage(Pages.PropertyManager);
         }
@@ -116,18 +113,18 @@ namespace Lairinus.Transitions
 
             foreach (FieldInfo componentFieldInfo in reflectedComponent.GetType().GetFields())
             {
-                if (TransitionerUtility.GetInstance().typesDictionary.ContainsKey(componentFieldInfo.FieldType))
+                if (Utility.GetInstance().typesDictionary.ContainsKey(componentFieldInfo.FieldType))
                 {
-                    ReflectedPhaseMember reflectedPhaseMember = new ReflectedPhaseMember(MemberType.Field, reflectedComponent, componentFieldInfo.Name, componentFieldInfo.FieldType);
+                    PhaseMember reflectedPhaseMember = new PhaseMember(MemberType.Field, reflectedComponent, componentFieldInfo.Name, componentFieldInfo.FieldType);
                     _allReflectedPhaseMembers.Add(reflectedPhaseMember);
                 }
             }
 
             foreach (PropertyInfo componentPropertyInfo in reflectedComponent.GetType().GetProperties())
             {
-                if (componentPropertyInfo.CanRead && componentPropertyInfo.CanWrite && TransitionerUtility.GetInstance().typesDictionary.ContainsKey(componentPropertyInfo.PropertyType))
+                if (componentPropertyInfo.CanRead && componentPropertyInfo.CanWrite && Utility.GetInstance().typesDictionary.ContainsKey(componentPropertyInfo.PropertyType))
                 {
-                    ReflectedPhaseMember reflectedPhaseMember = new ReflectedPhaseMember(MemberType.Property, reflectedComponent, componentPropertyInfo.Name, componentPropertyInfo.PropertyType);
+                    PhaseMember reflectedPhaseMember = new PhaseMember(MemberType.Property, reflectedComponent, componentPropertyInfo.Name, componentPropertyInfo.PropertyType);
                     _allReflectedPhaseMembers.Add(reflectedPhaseMember);
                 }
             }

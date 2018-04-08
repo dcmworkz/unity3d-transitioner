@@ -113,11 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &330800894 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-    type: 2}
-  m_PrefabInternal: {fileID: 1693516947}
 --- !u!1 &819988163
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +230,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1521046633
 GameObject:
@@ -246,10 +241,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1521046638}
   - component: {fileID: 1521046637}
+  - component: {fileID: 1521046639}
   - component: {fileID: 1521046636}
   - component: {fileID: 1521046635}
   - component: {fileID: 1521046634}
-  - component: {fileID: 1521046639}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -268,60 +263,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f12a917f16e6449938d5f47f43eb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sf_targetGameObject: {fileID: 819988163}
+  _sf_targetGameObject: {fileID: 1521046633}
   _sf_disableTransition: 0
   _sf_loop: 0
   _sf_phases:
   - _sf_disabled: 0
     _sf_name: Phase 1
     _sf_delay: 0
-    _sf_duration: 0
+    _sf_duration: 3.5
     _sf_lerpPlaystyleType:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.64720523
+        value: 0.487365
+        inSlope: 0.18578023
+        outSlope: 0.18578023
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.3236024
+        value: 0.16876665
+        inSlope: 0.018179417
+        outSlope: 0.018179417
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.9306906
+        value: 0.64479005
+        inSlope: 0.47802925
+        outSlope: 0.47802925
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 3.0186827
+        value: 0.4585983
+        inSlope: -0.14603138
+        outSlope: -0.14603138
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 3.5
+        value: 1
+        inSlope: 0.5714286
+        outSlope: 0.5714286
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 0
     _sf_reflectedMembers:
     - _sf_memberType: 0
-      _sf_serializedPropertyType: 8
+      _sf_serializedPropertyType: 1
       _sf_parentComponent: {fileID: 1521046639}
-      _sf_memberName: center
-      _sf_memberValueString: (0.0, 0.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 0
-      _sf_parentComponent: {fileID: 1521046639}
-      _sf_memberName: enabled
-      _sf_memberValueString: 
+      _sf_memberName: isTrigger
+      _sf_memberValueString: False
       _sf_isDisabled: 0
       _sf_canBeLerped: 0
-  - _sf_disabled: 0
-    _sf_name: Phase 1
-    _sf_delay: 0
-    _sf_duration: 0
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
-      m_RotationOrder: 0
-    _sf_reflectedMembers:
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 8
-      _sf_parentComponent: {fileID: 1521046639}
-      _sf_memberName: center
-      _sf_memberValueString: 
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 0
-      _sf_parentComponent: {fileID: 1521046639}
-      _sf_memberName: enabled
-      _sf_memberValueString: 
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 0
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
 --- !u!81 &1521046635
 AudioListener:
   m_ObjectHideFlags: 0
@@ -392,286 +398,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1521046633}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1693516947
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4424225861436044, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1698323346046524, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_Name
-      value: Phase Test - Filled Out
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[6]._sf_name
-      value: Phase  5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[11]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[11]._sf_memberName
-      value: localScale
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[12]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[12]._sf_memberName
-      value: localPosition
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_name
-      value: asdf
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[1]._sf_name
-      value: Phase  5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[2]._sf_name
-      value: Phase  5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[3]._sf_name
-      value: Phase  5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_memberName
-      value: position
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_memberName
-      value: name
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_memberName
-      value: tag
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[3]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[3]._sf_memberName
-      value: hierarchyCapacity
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[4]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[4]._sf_memberName
-      value: eulerAngles
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[5]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[5]._sf_memberName
-      value: forward
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[6]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[6]._sf_memberName
-      value: eulerAngles
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[7]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[7]._sf_memberName
-      value: forward
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[8]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[8]._sf_memberName
-      value: eulerAngles
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[9]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[9]._sf_memberName
-      value: eulerAngles
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[10]._sf_parentComponent
-      value: 
-      objectReference: {fileID: 330800894}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[10]._sf_memberName
-      value: forward
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[5]._sf_name
-      value: Phase  5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[4]._sf_name
-      value: Phase  5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_serializedPropertyType
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_serializedPropertyType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_canBeLerped
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[0]._sf_memberValueString
-      value: (0.0, 0.0, 0.0)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_memberValueString
-      value: Phase Test - Filled Out
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_serializedPropertyType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[1]._sf_canBeLerped
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_memberValueString
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-        type: 2}
-      propertyPath: _sf_phases.Array.data[0]._sf_reflectedMembers.Array.data[2]._sf_canBeLerped
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1698323346046524, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 40d9646efc3c26c40a2a0e1e2356faac, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1715990500
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vector4pProp: {x: 0, y: 0, z: 0, w: 0}
-  newColorProp: {r: 0, g: 0, b: 0, a: 0}
+  newColorProp: {r: 0.711, g: 0.141, b: 0.141, a: 1}
   newBoolProp: 0
 --- !u!114 &1715990502
 MonoBehaviour:
@@ -717,25 +448,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sf_targetGameObject: {fileID: 1715990500}
-  _sf_disableTransition: 0
+  _sf_disableTransition: 1
   _sf_loop: 0
   _sf_phases:
   - _sf_disabled: 0
     _sf_name: Phase 1
     _sf_delay: 0
-    _sf_duration: 50
+    _sf_duration: 1
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 2
-        outSlope: 2
+        inSlope: 0
+        outSlope: 0
         tangentMode: 0
       - serializedVersion: 2
-        time: 50
-        value: 100
+        time: 1
+        value: 1
         inSlope: 2
         outSlope: 2
         tangentMode: 0
@@ -743,20 +474,20 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 0
     _sf_reflectedMembers:
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
+    - _sf_memberType: 1
+      _sf_serializedPropertyType: 4
       _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: vector3Prop
-      _sf_memberValueString: (0.0, 0.0, 0.0)
+      _sf_memberName: newColorProp
+      _sf_memberValueString: RGBA(0.711, 0.141, 0.141, 1.000)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 1
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: enabled
-      _sf_memberValueString: False
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 0
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
   - _sf_disabled: 0
     _sf_name: Phase 2
     _sf_delay: 0
@@ -787,3 +518,10 @@ MonoBehaviour:
       _sf_memberValueString: (0.0, 0.0, 1.0)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4

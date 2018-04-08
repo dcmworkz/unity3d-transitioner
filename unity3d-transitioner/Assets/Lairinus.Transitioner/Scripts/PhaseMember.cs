@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Reflection;
+﻿using Lairinus.Transitions.Internal;
 using System;
+using System.Reflection;
 using UnityEditor;
-using Lairinus.Transitions.Internal;
+using UnityEngine;
 
 namespace Lairinus.Transitions
 {
@@ -15,31 +13,35 @@ namespace Lairinus.Transitions
     }
 
     [System.Serializable]
-    public class ReflectedPhaseMember
+    public class PhaseMember
     {
-        public ReflectedPhaseMember(MemberType memberType, Component _parentComponent, string _memberName, Type type)
+        public PhaseMember(MemberType memberType, Component _parentComponent, string _memberName, Type type)
         {
             _sf_memberType = memberType;
             _sf_parentComponent = _parentComponent;
             _sf_memberName = _memberName;
-            if (TransitionerUtility.GetInstance().typesDictionary.ContainsKey(type))
-                _sf_serializedPropertyType = TransitionerUtility.GetInstance().typesDictionary[type];
+            if (Utility.GetInstance().typesDictionary.ContainsKey(type))
+                _sf_serializedPropertyType = Utility.GetInstance().typesDictionary[type];
         }
 
         [SerializeField] private MemberType _sf_memberType = MemberType.Field;
-        [SerializeField] private TransitionerUtility.AvailableMemberTypes _sf_serializedPropertyType = new TransitionerUtility.AvailableMemberTypes();
+        [SerializeField] private Utility.AvailableMemberTypes _sf_serializedPropertyType = new Utility.AvailableMemberTypes();
         [SerializeField] private Component _sf_parentComponent = null;
         [SerializeField] private string _sf_memberName = "";
         [SerializeField] private string _sf_memberValueString = "";
         [SerializeField] private bool _sf_isDisabled = false;
         [SerializeField] private bool _sf_canBeLerped = false;
+        [SerializeField] private bool _sf_useSeparateAnimationCurve = false;
+        [SerializeField] private AnimationCurve _sf_animationCurve = new AnimationCurve();
         public bool canBeLerped { get { return _sf_canBeLerped; } }
+        public bool useSeparateAnimationCurve { get { return _sf_useSeparateAnimationCurve; } }
         protected string memberValueString { get { return _sf_memberValueString; } }
         public Component parentComponent { get { return _sf_parentComponent; } }
         public string memberName { get { return _sf_memberName; } }
         public PropertyInfo property { get; private set; }
+        public AnimationCurve separateAnimationCurve { get { return _sf_animationCurve; } }
         public FieldInfo field { get; private set; }
-        public TransitionerUtility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
+        public Utility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
         public bool isDisabled { get { return _sf_isDisabled; } }
 
         public void SetValue(object value)

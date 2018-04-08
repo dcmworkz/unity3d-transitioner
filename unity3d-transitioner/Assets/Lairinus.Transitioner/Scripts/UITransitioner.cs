@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Reflection;
 
 namespace Lairinus.Transitions
 {
@@ -25,18 +23,18 @@ namespace Lairinus.Transitions
             [SerializeField] private float _sf_delay = 0;
             [SerializeField] private float _sf_duration = 0;
             [SerializeField] private AnimationCurve _sf_lerpPlaystyleType = new AnimationCurve();
-            [SerializeField] private List<ReflectedPhaseMember> _sf_reflectedMembers = new List<ReflectedPhaseMember>();
+            [SerializeField] private List<PhaseMember> _sf_reflectedMembers = new List<PhaseMember>();
             public float duration { get { return _sf_duration; } set { _sf_duration = value; } }
             public float delay { get { return _sf_delay; } }
             public string name { get { return _sf_name; } set { _sf_name = value; } }
             public bool disabled { get { return _sf_disabled; } set { _sf_disabled = value; } }
             public AnimationCurve lerpPlaystyleType { get { return _sf_lerpPlaystyleType; } }
-            public List<ReflectedPhaseMember> reflectedMembers { get { return _sf_reflectedMembers; } }
+            public List<PhaseMember> reflectedMembers { get { return _sf_reflectedMembers; } }
         }
 
         private void Awake()
         {
-            foreach (ReflectedPhaseMember mem in _sf_phases[0].reflectedMembers)
+            foreach (PhaseMember mem in _sf_phases[0].reflectedMembers)
             {
                 //Debug.Log(mem.memberName);
             }

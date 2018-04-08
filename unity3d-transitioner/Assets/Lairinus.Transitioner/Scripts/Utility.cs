@@ -1,12 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Lairinus.Transitions.Internal
 {
     [ExecuteInEditMode]
-    public class TransitionerUtility : MonoBehaviour
+    public class Utility : MonoBehaviour
     {
         private Dictionary<Type, AvailableMemberTypes> _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
         public Dictionary<Type, AvailableMemberTypes> typesDictionary { get { return _typesDictionary; } }
@@ -38,17 +37,17 @@ namespace Lairinus.Transitions.Internal
             return Enum.GetName(typeof(AvailableMemberTypes), availableMemberType);
         }
 
-        private static TransitionerUtility _instance = null;
+        private static Utility _instance = null;
 
-        public static TransitionerUtility GetInstance()
+        public static Utility GetInstance()
         {
             if (_instance == null)
             {
-                _instance = GameObject.FindObjectOfType<TransitionerUtility>();
+                _instance = GameObject.FindObjectOfType<Utility>();
                 if (_instance == null)
                 {
                     GameObject go = new GameObject("Lairinus.TransitionerUtility");
-                    _instance = go.AddComponent<TransitionerUtility>();
+                    _instance = go.AddComponent<Utility>();
                 }
                 _instance.PopulateTypeDictionary();
             }
@@ -135,131 +134,162 @@ namespace Lairinus.Transitions.Internal
 
         public static object GetObject(Type _type, string str)
         {
-            Type type = _type;
-            if (!GetInstance().typesDictionary.ContainsKey(type))
-                return new object();
-
-            AvailableMemberTypes memberType = GetInstance().typesDictionary[type];
-            switch (memberType)
+            try
             {
-                case AvailableMemberTypes.Vector2:
-                    return ConvertStringToVector2(str);
-
-                case AvailableMemberTypes.Vector3:
-                    return ConvertStringToVector3(str);
-
-                case AvailableMemberTypes.Vector4:
-                    return ConvertStringToVector4(str);
-
-                case AvailableMemberTypes.String:
-                    return str;
-
-                case AvailableMemberTypes.Integer:
-                    return int.Parse(str);
-
-                case AvailableMemberTypes.Float:
-                    return float.Parse(str);
-
-                case AvailableMemberTypes.Boolean:
-                    {
-                        bool tryparse = false;
-                        bool.TryParse(str, out tryparse);
-                        return tryparse;
-                    }
-
-                case AvailableMemberTypes.Color:
-                    return ConvertStringToColor(str);
-
-                default:
+                Type type = _type;
+                if (!GetInstance().typesDictionary.ContainsKey(type))
                     return new object();
+
+                AvailableMemberTypes memberType = GetInstance().typesDictionary[type];
+                switch (memberType)
+                {
+                    case AvailableMemberTypes.Vector2:
+                        return ConvertStringToVector2(str);
+
+                    case AvailableMemberTypes.Vector3:
+                        return ConvertStringToVector3(str);
+
+                    case AvailableMemberTypes.Vector4:
+                        return ConvertStringToVector4(str);
+
+                    case AvailableMemberTypes.String:
+                        return str;
+
+                    case AvailableMemberTypes.Integer:
+                        return int.Parse(str);
+
+                    case AvailableMemberTypes.Float:
+                        return float.Parse(str);
+
+                    case AvailableMemberTypes.Boolean:
+                        {
+                            bool tryparse = false;
+                            bool.TryParse(str, out tryparse);
+                            return tryparse;
+                        }
+
+                    case AvailableMemberTypes.Color:
+                        return ConvertStringToColor(str);
+
+                    default:
+                        return new object();
+                }
+            }
+            catch
+            {
+                return new object();
             }
         }
 
         private static Vector3 ConvertStringToVector3(string sVector)
         {
-            if (sVector == null || sVector == "")
-                return new Vector3();
-
-            // Remove the parentheses
-            if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+            try
             {
-                sVector = sVector.Substring(1, sVector.Length - 2);
+                if (sVector == null || sVector == "")
+                    return new Vector3();
+
+                // Remove the parentheses
+                if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+                {
+                    sVector = sVector.Substring(1, sVector.Length - 2);
+                }
+
+                // split the items
+                string[] sArray = sVector.Split(',');
+
+                // store as a Vector3
+                Vector3 result = new Vector3(
+                    float.Parse(sArray[0]),
+                    float.Parse(sArray[1]),
+                    float.Parse(sArray[2]));
+
+                return result;
             }
-
-            // split the items
-            string[] sArray = sVector.Split(',');
-
-            // store as a Vector3
-            Vector3 result = new Vector3(
-                float.Parse(sArray[0]),
-                float.Parse(sArray[1]),
-                float.Parse(sArray[2]));
-
-            return result;
+            catch
+            {
+                return new Vector3();
+            }
         }
 
         private static Color ConvertStringToColor(string sColor)
         {
-            if (sColor == null || sColor == "")
-                return Color.white;
-
-            // expected string input is "RGBA(0.000,0.000,0.000,0.000)"
-            if (sColor.StartsWith("RGBA(") && sColor.EndsWith(")"))
+            try
             {
-                sColor = sColor.Substring(5, sColor.Length - 6);
-            }
-            string[] sArray = sColor.Split(',');
-            Color result = new Color(
-                float.Parse(sArray[0]),
-                float.Parse(sArray[1]),
-                float.Parse(sArray[2]),
-                float.Parse(sArray[3]));
+                if (sColor == null || sColor == "")
+                    return Color.white;
 
-            return result;
+                // expected string input is "RGBA(0.000,0.000,0.000,0.000)"
+                if (sColor.StartsWith("RGBA(") && sColor.EndsWith(")"))
+                {
+                    sColor = sColor.Substring(5, sColor.Length - 6);
+                }
+                string[] sArray = sColor.Split(',');
+                Color result = new Color(
+                    float.Parse(sArray[0]),
+                    float.Parse(sArray[1]),
+                    float.Parse(sArray[2]),
+                    float.Parse(sArray[3]));
+
+                return result;
+            }
+            catch
+            {
+                return Color.white;
+            }
         }
 
         private static Vector4 ConvertStringToVector4(string sVector)
         {
-            if (sVector == null || sVector == "")
-                return new Vector4();
-
-            // expected string input is "(0,0,0)"
-            if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+            try
             {
-                sVector = sVector.Substring(1, sVector.Length - 2);
+                if (sVector == null || sVector == "")
+                    return new Vector4();
+
+                // expected string input is "(0,0,0)"
+                if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+                {
+                    sVector = sVector.Substring(1, sVector.Length - 2);
+                }
+
+                string[] sArray = sVector.Split(',');
+                Vector4 result = new Vector4(
+                    float.Parse(sArray[0]),
+                    float.Parse(sArray[1]),
+                    float.Parse(sArray[2]),
+                    float.Parse(sArray[3]));
+
+                return result;
             }
-
-            string[] sArray = sVector.Split(',');
-            Vector4 result = new Vector4(
-                float.Parse(sArray[0]),
-                float.Parse(sArray[1]),
-                float.Parse(sArray[2]),
-                float.Parse(sArray[3]));
-
-            return result;
+            catch
+            {
+                return new Vector4();
+            }
         }
 
         private static Vector2 ConvertStringToVector2(string sVector)
         {
-            if (sVector == null || sVector == "")
-                return new Vector2();
-
-            // expected string input is "(0,0)"
-            if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+            try
             {
-                sVector = sVector.Substring(1, sVector.Length - 2);
+                if (sVector == null || sVector == "")
+                    return new Vector2();
+
+                // expected string input is "(0,0)"
+                if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+                {
+                    sVector = sVector.Substring(1, sVector.Length - 2);
+                }
+
+                string[] sArray = sVector.Split(',');
+                Vector2 result = new Vector3(
+                    float.Parse(sArray[0]),
+                    float.Parse(sArray[1]));
+
+                return result;
             }
-
-            string[] sArray = sVector.Split(',');
-            Vector2 result = new Vector3(
-                float.Parse(sArray[0]),
-                float.Parse(sArray[1]));
-
-            return result;
-        }
-
-        private void Start()
-        {
+            catch
+            {
+                return new Vector2();
+            }
         }
     }
 }

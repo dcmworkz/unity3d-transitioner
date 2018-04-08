@@ -298,9 +298,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Lairinus.Transitioner\Demo\LotsOfTypes.cs" />
-    <Compile Include="Assets\Lairinus.Transitioner\Scripts\ReflectedPhaseMember.cs" />
-    <Compile Include="Assets\Lairinus.Transitioner\Scripts\TransitionerUtility.cs" />
+    <Compile Include="Assets\Lairinus.Transitioner\Scripts\PhaseMember.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Scripts\UITransitioner.cs" />
+    <Compile Include="Assets\Lairinus.Transitioner\Scripts\Utility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

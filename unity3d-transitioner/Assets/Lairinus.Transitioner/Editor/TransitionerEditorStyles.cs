@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [CreateAssetMenu(fileName = "TransitionerEditorStyles", menuName = "Lairinus/TransitionerEditorStyles")]
 public class TransitionerEditorStyles : ScriptableObject

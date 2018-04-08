@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 using UnityEditor;
-using UnityEditorInternal;
-using System;
+using UnityEngine;
 
 namespace Lairinus.Transitions
 {
@@ -19,27 +16,23 @@ namespace Lairinus.Transitions
 
         private void DrawBasicSettings()
         {
-            GUIContent targetGameObjectContent = new GUIContent("GameObject", "The GameObject that will handle all of the Transitions and Phases");
-            GUIContent transitionEnabledContent = new GUIContent("Disable", "Determines if whether the current Transition can be processed or not");
-            GUIContent transitionLoopedContent = new GUIContent("Loop", "If enabled, the transition will continuously play until it is manually stopped, or this property gets disabled");
-
-            Action targetGOProperty = () => DisplayHorizontalProperty(_targetGameObject, targetGameObjectContent, 20, false, true);
-            Action enableTransitionProperty = () => DisplayHorizontalProperty(disableTransition, transitionEnabledContent, 20, false, true);
-            Action loopProperty = () => DisplayHorizontalProperty(_loop, transitionLoopedContent, 20, false, false);
+            Action targetGOProperty = () => DisplayHorizontalProperty(_targetGameObject, Helper.content_targetGameObject, 20, false, true);
+            Action enableTransitionProperty = () => DisplayHorizontalProperty(disableTransition, Helper.content_disableTransition, 20, false, true);
+            Action loopProperty = () => DisplayHorizontalProperty(_loop, Helper.content_loopTransition, 20, false, false);
             Action[] actions = { targetGOProperty, enableTransitionProperty, loopProperty };
-            DisplaySettingBox("Basic Settings", actions, 20);
+            DisplaySettingBox(Helper.content_SettingsBoxTitle_BasicSettings, actions, 20);
             GUILayout.Space(20);
-            DisplayMainButton(new GUIContent("Modify Phases"), _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
+            DisplayMainButton(Helper.content_mainButton_modifyPhases, _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
         }
 
-        private void DisplaySettingBox(string title, Action[] propertyActions, float space, float preSpace = 0, float postSpace = 0)
+        private void DisplaySettingBox(GUIContent titleContent, Action[] propertyActions, float space, float preSpace = 0, float postSpace = 0)
         {
             GUILayout.Space(preSpace);
             GUILayout.Space(space);
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             EditorGUILayout.BeginVertical();
-            EditorGUILayout.LabelField(title, EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(titleContent, EditorStyles.boldLabel);
             EditorGUILayout.BeginVertical(GUI.skin.box, GUILayout.Width(Screen.width * 0.8F));
             GUILayout.Space(space);
 

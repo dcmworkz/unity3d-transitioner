@@ -1,10 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using UnityEditor;
-using UnityEditorInternal;
-using System;
+using UnityEngine;
 
 namespace Lairinus.Transitions
 {
@@ -162,7 +159,7 @@ namespace Lairinus.Transitions
                 displayPhaseActions.Add(phase);
             }
 
-            DisplaySettingBox("Phases", displayPhaseActions.ToArray(), 20);
+            DisplaySettingBox(Helper.content_SettingsBoxTitle_Phases, displayPhaseActions.ToArray(), 20);
         }
 
         private void ShowPhaseSingleSettingsBox()
@@ -182,28 +179,28 @@ namespace Lairinus.Transitions
             actions.Add(new Action(() => DisplayHorizontalProperty(phaseName, new GUIContent("Name:"), 20, true, false)));
             actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, new GUIContent("Delay:"), 20, true, false)));
             actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, new GUIContent("Duration:"), 20, true, false)));
-            actions.Add(new Action(() => ShowLerpCurve(lerpPlaystyleType, phaseDuration, phaseDelay)));
+            actions.Add(new Action(() => ShowLerpCurve(new GUIContent("Animation Curve"), lerpPlaystyleType, phaseDuration, phaseDelay)));
             actions.Add(new Action(() => DisplayMainButton(new GUIContent("Edit Properties", "Allows you to add Properties and Fields from this component to lerp or set"), _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.PropertyManager)), true, null, 20)));
 
-            DisplaySettingBox("Phase Settings", actions.ToArray(), 20);
+            DisplaySettingBox(Helper.content_SettingsBoxTitle_PhaseOptions, actions.ToArray(), 20);
         }
 
-        private void ShowLerpCurve(SerializedProperty lerpPlaystyleTypeProp, SerializedProperty durationProperty, SerializedProperty delayProperty)
+        private void ShowLerpCurve(GUIContent content, SerializedProperty animationCurveProperty, SerializedProperty durationProperty, SerializedProperty delayProperty, float leftRightPadding = 20)
         {
             if (durationProperty.floatValue <= 0)
                 return;
 
             EditorGUILayout.Space();
             GUILayout.BeginHorizontal();
-            GUILayout.Space(20);
-            EditorGUILayout.LabelField("Animation Curve:");
-            AnimationCurve curve = lerpPlaystyleTypeProp.animationCurveValue;
-            Rect ranges = new Rect(delayProperty.floatValue, 0, durationProperty.floatValue, 100);
-            GUILayout.Space(20);
+            GUILayout.Space(leftRightPadding);
+            EditorGUILayout.LabelField(content);
+            AnimationCurve curve = animationCurveProperty.animationCurveValue;
+            Rect ranges = new Rect(delayProperty.floatValue, 0, durationProperty.floatValue, 1);
+            GUILayout.Space(leftRightPadding);
             curve = EditorGUILayout.CurveField(curve, _editorStyles.lairinusBlue, ranges, GUILayout.Height(100), GUILayout.Width(150));
-            GUILayout.Space(20);
+            GUILayout.Space(leftRightPadding);
             GUILayout.EndHorizontal();
-            lerpPlaystyleTypeProp.animationCurveValue = curve;
+            animationCurveProperty.animationCurveValue = curve;
             serializedObject.ApplyModifiedProperties();
         }
     }
