@@ -8,6 +8,7 @@ public class TransitionerEditorStyles : ScriptableObject
     public GUIStyle downArrowButtonStyle = null;
     public GUIStyle deleteButtonStyle = null;
     public GUIStyle phaseSelectedButtonStyle = null;
+    public GUIStyle headerBoxStyle = null;
     public Color lairinusRed;
     public Color lairinusGreen;
     public Color lairinusBlue;

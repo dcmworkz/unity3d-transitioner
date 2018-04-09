@@ -104,17 +104,41 @@ namespace Lairinus.Transitions
                 EditorGUILayout.Space();
         }
 
+        private void ShowLerpCurve(GUIContent content, SerializedProperty animationCurveProperty, SerializedProperty durationProperty, SerializedProperty delayProperty, float leftRightPadding = 20)
+        {
+            if (durationProperty.floatValue <= 0)
+                return;
+
+            EditorGUILayout.Space();
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(leftRightPadding);
+            EditorGUILayout.LabelField(content);
+            AnimationCurve curve = animationCurveProperty.animationCurveValue;
+            Rect ranges = new Rect(delayProperty.floatValue, 0, durationProperty.floatValue, 1);
+            GUILayout.Space(leftRightPadding);
+            curve = EditorGUILayout.CurveField(curve, _editorStyles.lairinusBlue, ranges, GUILayout.Height(100), GUILayout.Width(150));
+            GUILayout.Space(leftRightPadding);
+            GUILayout.EndHorizontal();
+            animationCurveProperty.animationCurveValue = curve;
+            serializedObject.ApplyModifiedProperties();
+        }
+
         private static class Helper
         {
             // Phases -> Properties
             public const string phaseProp_Delay = "_sf_delay";
 
             public const string phaseProp_Duration = "_sf_duration";
+            public const string phaseProp_lerpPlaystyleType = "_sf_lerpPlaystyleType";
+            public const string phaseProp_name = "_sf_name";
+            public const string phaseProp_disabled = "_sf_disabled";
+            public const string phaseProp_reflectedMembers = "_sf_reflectedMembers";
 
             // Phase Members -> Properties
             public const string phaseMemberProp_availableMemberType = "_sf_serializedPropertyType";
 
             public const string phaseMemberProp_memberName = "_sf_memberName";
+            public const string phaseMmemberProp_memberType = "_sf_memberType";
             public const string phaseMemberProp_parentComponent = "_sf_parentComponent";
             public const string phaseMemberProp_isDisabled = "_sf_isDisabled";
             public const string phaseMemberProp_canBeLerped = "_sf_canBeLerped";
@@ -135,6 +159,17 @@ namespace Lairinus.Transitions
             public static GUIContent content_SettingsBoxTitle_PhaseOptions = new GUIContent("Phase Options", "All of the options inside of this box affect how the selected Phase behaves");
             public static GUIContent content_SettingsBoxTitle_ComponentsOnGameObject = new GUIContent("Components on GameObject", "Lists all of the valid components on the GameObject. ");
             public static GUIContent content_SettingsBoxTitle_MembersOnGameObject = new GUIContent("Members on GameObject", "Displays all of the valid members that a component has. Invalid components will not be listed!");
+            public static GUIContent content_DeletePhaseButton = new GUIContent("", "Deletes the Phase.");
+            public static GUIContent content_MovePhaseUp = new GUIContent("", "Moves this Phase one up");
+            public static GUIContent content_MovePhaseDown = new GUIContent("", "Moves this Phase one down");
+            public static GUIContent content_phaseDisabled = new GUIContent("Disabled:", "If true, this entire phase will be skipped");
+            public static GUIContent content_phaseName = new GUIContent("Name:", "The name of this Phase. This is primarily used to help you organize your Phases");
+            public static GUIContent content_phaseDuration = new GUIContent("Duration:", "The total time that this Phase runs for");
+            public static GUIContent content_phaseDelay = new GUIContent("Delay:", "The total time that elapses before the members in this phase begin their transitions");
+            public static GUIContent content_PhaseAnimationCurve = new GUIContent("Animation Playstyle", "How this Phase will play. Each 'Lerpable' member will behave in this manner, unless you specify a different curve for a specific property");
+            public static GUIContent content_button_EditProperties = new GUIContent("Edit Members", "Each member inside of a Phase will act together in order to modify the GameObject.");
+            public static GUIContent content_button_Back = new GUIContent("Back", "Returns to the previous page");
+            public static GUIContent content_button_addPhase = new GUIContent("Add Phase", "Creates a new Phase and adds it to this Transition.");
 
             // Help Boxes
             public const string helpbox_cannotBeLerped = "The member type of %%custom%% cannot be lerped. The value will be set at the end of the current Phase";

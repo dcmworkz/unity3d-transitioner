@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorSkin: {fileID: 11400000, guid: 7ffb507646a1dc54ba5dc9ef5114ebb4, type: 2}
   upArrowButtonStyle:
-    m_Name: 
+    m_Name: button
     m_Normal:
       m_Background: {fileID: 2800000, guid: 35c064214f4ff39479d2f6033c4d3ba9, type: 3}
       m_ScaledBackgrounds: []
@@ -80,7 +80,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   downArrowButtonStyle:
-    m_Name: 
+    m_Name: button
     m_Normal:
       m_Background: {fileID: 2800000, guid: 84c2efb90931e0844864ec42ce1e4a35, type: 3}
       m_ScaledBackgrounds: []
@@ -147,7 +147,7 @@ MonoBehaviour:
     m_StretchWidth: 1
     m_StretchHeight: 0
   deleteButtonStyle:
-    m_Name: 
+    m_Name: button
     m_Normal:
       m_Background: {fileID: 2800000, guid: 62daaf8610818f8459f68f3df35ba065, type: 3}
       m_ScaledBackgrounds: []
@@ -268,6 +268,73 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 0}
+    m_FontSize: 0
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
+  headerBoxStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 2800000, guid: 3a665144b65a75642adf2da452d8a62f, type: 3}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Hover:
+      m_Background: {fileID: 2800000, guid: 3a665144b65a75642adf2da452d8a62f, type: 3}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 2800000, guid: 3a665144b65a75642adf2da452d8a62f, type: 3}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 12800000, guid: 6434b352d0f8fa14c97f5a2e297a5cc7, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 0

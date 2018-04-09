@@ -9,6 +9,7 @@ namespace Lairinus.Transitions
     {
         private void DisplayPhaseMember(int index, SerializedProperty reflectedMemberSingle, SerializedProperty reflectedPhaseMembersListProperty)
         {
+            // Displays a single member inside of a Phase
             SerializedProperty rmAvailableMemberTypeEnum = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_availableMemberType);
             SerializedProperty rmMemberName = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_memberName);
             SerializedProperty rmParentComponent = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_parentComponent);
@@ -22,12 +23,13 @@ namespace Lairinus.Transitions
             string typeFromComponent = GetStringTypeFromComponentProperty(rmParentComponent);
 
             GUILayout.Space(20);
-            EditorGUILayout.LabelField(typeFromComponent, EditorStyles.largeLabel, GUILayout.Height(25));
-            EditorGUILayout.LabelField(rmMemberName.stringValue + " - " + Utility.GetAvailableMemberName(rmAvailableMemberTypeEnum.enumValueIndex), EditorStyles.largeLabel, GUILayout.Height(30));
             if (!rmCanBeLerped.boolValue)
                 EditorGUILayout.HelpBox(Helper.helpbox_cannotBeLerped.Replace("%%custom%%", typeFromComponent), MessageType.Info);
+            EditorGUILayout.BeginVertical(_editorStyles.headerBoxStyle);
+            EditorGUILayout.LabelField("Component: - " + typeFromComponent, EditorStyles.largeLabel, GUILayout.Height(25));
+            EditorGUILayout.LabelField("Member: - " + rmMemberName.stringValue + " - " + Utility.GetAvailableMemberName(rmAvailableMemberTypeEnum.enumValueIndex), EditorStyles.largeLabel, GUILayout.Height(25));
+            EditorGUILayout.EndVertical();
             EditorGUILayout.BeginVertical(GUI.skin.box);
-            EditorGUILayout.Space();
             EditorGUILayout.PropertyField(rmIsDisabled, new GUIContent("Disabled"));
             EditorGUILayout.Space();
             if (!rmIsDisabled.boolValue)

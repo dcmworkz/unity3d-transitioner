@@ -20,7 +20,7 @@ namespace Lairinus.Transitions
                 return;
 
             Action openPage = new Action(() => OpenPage(Pages.PropertyManager));
-            DisplayMainButton(new GUIContent("Back", "Returns to the Property Manager page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
+            DisplayMainButton(Helper.content_button_Back, _editorStyles.lairinusRed, openPage, true, null, 20, 20);
             _allReflectedPhaseMembers = _allReflectedPhaseMembers.OrderBy(x => x.memberName).ToList();
             DisplaySettingBox(Helper.content_SettingsBoxTitle_ComponentsOnGameObject, _componentActions.ToArray(), 20);
             if (_selectedComponent != null)
@@ -71,14 +71,14 @@ namespace Lairinus.Transitions
                 return;
 
             // Set members
-            SerializedProperty reflectedPropertiesList = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_reflectedMembers");
+            SerializedProperty reflectedPropertiesList = _currentSelectedPhaseProperty.FindPropertyRelative(Helper.phaseProp_reflectedMembers);
             reflectedPropertiesList.arraySize++;
             SerializedProperty reflectedMemberSingle = reflectedPropertiesList.GetArrayElementAtIndex(reflectedPropertiesList.arraySize - 1);
-            SerializedProperty rmMemberType = reflectedMemberSingle.FindPropertyRelative("_sf_memberType");
-            SerializedProperty rmMemberSerializedType = reflectedMemberSingle.FindPropertyRelative("_sf_serializedPropertyType");
-            SerializedProperty rmMemberName = reflectedMemberSingle.FindPropertyRelative("_sf_memberName");
-            SerializedProperty rmParentComponent = reflectedMemberSingle.FindPropertyRelative("_sf_parentComponent");
-            SerializedProperty rmCanBeLerped = reflectedMemberSingle.FindPropertyRelative("_sf_canBeLerped");
+            SerializedProperty rmMemberType = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMmemberProp_memberType);
+            SerializedProperty rmMemberSerializedType = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_availableMemberType);
+            SerializedProperty rmMemberName = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_memberName);
+            SerializedProperty rmParentComponent = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_parentComponent);
+            SerializedProperty rmCanBeLerped = reflectedMemberSingle.FindPropertyRelative(Helper.phaseMemberProp_canBeLerped);
             rmMemberType.enumValueIndex = (int)reflectedPhaseMember.memberType;
             rmMemberSerializedType.enumValueIndex = (int)reflectedPhaseMember.serializedMemberType;
             rmMemberName.stringValue = reflectedPhaseMember.memberName;

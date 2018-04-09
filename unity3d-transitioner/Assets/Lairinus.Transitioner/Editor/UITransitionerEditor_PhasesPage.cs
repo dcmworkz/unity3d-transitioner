@@ -13,39 +13,31 @@ namespace Lairinus.Transitions
 
         private void DisplayPhase(string name, float minWidthBigButton, int phaseIndex)
         {
-            GUIStyle oldButtonStyle = GUI.skin.button;
-
+            // Creates The Phase buttons and icons.
             int capturedIndex = phaseIndex;
+            GUIStyle oldButtonStyle = GUI.skin.button;
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(20);
             GUI.skin.button.alignment = TextAnchor.MiddleLeft;
             Color heldColor = GUI.backgroundColor;
-            Color newColor = new Color();
-            if (_currentlySelectedPhaseIndex == phaseIndex)
+            if (_currentlySelectedPhaseIndex == capturedIndex)
             {
-                ColorUtility.TryParseHtmlString("#00aa00", out newColor);
-                GUI.backgroundColor = newColor;
+                GUI.backgroundColor = _editorStyles.lairinusGreen;
                 if (GUILayout.Button(name, GUILayout.MinWidth(minWidthBigButton), GUILayout.Height(24)))
-                {
-                    SelectPhase(capturedIndex);
-                }
+                    HandleOnClick_SelectPhase(capturedIndex);
             }
             else
             {
                 if (GUILayout.Button(name, GUILayout.MinWidth(minWidthBigButton), GUILayout.Height(24)))
-                {
-                    SelectPhase(capturedIndex);
-                }
+                    HandleOnClick_SelectPhase(capturedIndex);
             }
             GUI.backgroundColor = heldColor;
             GUI.skin.button = _editorStyles.upArrowButtonStyle;
 
-            if (phaseIndex != _phasesProperty.arraySize - 1)
+            if (capturedIndex != 0)
             {
-                if (GUILayout.Button(new GUIContent("", "Move this phase one up"), GUILayout.Width(24), GUILayout.Height(24)))
-                {
-                    HandleOnClick_MovePhaseUp(capturedIndex);
-                }
+                if (GUILayout.Button(Helper.content_MovePhaseUp, GUILayout.Width(24), GUILayout.Height(24)))
+                    HandleOnClick_MovePhaseDown(capturedIndex);
             }
             else
             {
@@ -53,13 +45,11 @@ namespace Lairinus.Transitions
                 GUILayout.Button("", GUILayout.Height(24), GUILayout.Width(24));
             }
 
-            if (phaseIndex != 0)
+            if (capturedIndex != _phasesProperty.arraySize - 1)
             {
                 GUI.skin.button = _editorStyles.downArrowButtonStyle;
-                if (GUILayout.Button(new GUIContent("", "Move this Phase one down"), GUILayout.Width(24), GUILayout.Height(24)))
-                {
-                    HandleOnClick_MovePhaseDown(capturedIndex);
-                }
+                if (GUILayout.Button(Helper.content_MovePhaseDown, GUILayout.Width(24), GUILayout.Height(24)))
+                    HandleOnClick_MovePhaseUp(capturedIndex);
             }
             else
             {
@@ -68,10 +58,9 @@ namespace Lairinus.Transitions
             }
 
             GUI.skin.button = _editorStyles.deleteButtonStyle;
-            if (GUILayout.Button(new GUIContent("", "Deletes the phase"), GUILayout.Width(24), GUILayout.Height(24)))
-            {
+            if (GUILayout.Button(Helper.content_DeletePhaseButton, GUILayout.Width(24), GUILayout.Height(24)))
                 HandleOnClick_RemovePhase(capturedIndex);
-            }
+
             GUILayout.Space(20);
             EditorGUILayout.EndHorizontal();
             GUI.skin.button = oldButtonStyle;
@@ -85,9 +74,9 @@ namespace Lairinus.Transitions
                 return;
 
             ShowAllPhaseSettingsBox();
-            DisplayMainButton(new GUIContent("Add Phase", "Creates a new Phase"), _editorStyles.lairinusGreen, new Action(() => HandleOnClick_AddPhase()), true, null, 20);
+            DisplayMainButton(Helper.content_button_addPhase, _editorStyles.lairinusGreen, new Action(() => HandleOnClick_AddPhase()), true, null, 20);
             ShowPhaseSingleSettingsBox();
-            DisplayMainButton(new GUIContent("Back"), _editorStyles.lairinusRed, new Action(() => OpenPage(Pages.Main)), true, null, 20);
+            DisplayMainButton(Helper.content_button_Back, _editorStyles.lairinusRed, new Action(() => OpenPage(Pages.Main)), true, null, 20);
         }
 
         private void HandleOnClick_AddPhase()
@@ -97,6 +86,7 @@ namespace Lairinus.Transitions
 
         private void HandleOnClick_MovePhaseDown(int index)
         {
+            // Moves the Phase to a lower index in its' array
             if (index > 0)
                 _phasesProperty.MoveArrayElement(index, index - 1);
 
@@ -106,6 +96,7 @@ namespace Lairinus.Transitions
 
         private void HandleOnClick_MovePhaseUp(int index)
         {
+            // Moves the Phase to a higher index in its' array
             if (index < _phasesProperty.arraySize - 1)
                 _phasesProperty.MoveArrayElement(index, index + 1);
 
@@ -127,13 +118,15 @@ namespace Lairinus.Transitions
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void SelectPhase(int index)
+        private void HandleOnClick_SelectPhase(int index)
         {
             int arraySize = _phasesProperty.arraySize;
             if (arraySize == 1)
                 index = 0;
+
             _currentSelectedPhaseProperty = _phasesProperty.GetArrayElementAtIndex(index);
             _currentlySelectedPhaseIndex = index;
+            GUI.FocusControl("null");
         }
 
         private void ShowAllPhaseSettingsBox()
@@ -168,40 +161,21 @@ namespace Lairinus.Transitions
             if (_currentSelectedPhaseProperty == null)
                 return;
 
-            SerializedProperty phaseDisabled = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_disabled");
-            SerializedProperty phaseName = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_name");
-            SerializedProperty phaseDelay = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_delay");
-            SerializedProperty phaseDuration = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_duration");
-            SerializedProperty lerpPlaystyleType = _currentSelectedPhaseProperty.FindPropertyRelative("_sf_lerpPlaystyleType");
+            SerializedProperty phaseDisabled = _currentSelectedPhaseProperty.FindPropertyRelative(Helper.phaseProp_disabled);
+            SerializedProperty phaseName = _currentSelectedPhaseProperty.FindPropertyRelative(Helper.phaseProp_name);
+            SerializedProperty phaseDelay = _currentSelectedPhaseProperty.FindPropertyRelative(Helper.phaseProp_Delay);
+            SerializedProperty phaseDuration = _currentSelectedPhaseProperty.FindPropertyRelative(Helper.phaseProp_Duration);
+            SerializedProperty lerpPlaystyleType = _currentSelectedPhaseProperty.FindPropertyRelative(Helper.phaseProp_lerpPlaystyleType);
 
             List<Action> actions = new List<Action>();
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDisabled, new GUIContent("Disabled:"), 20, false, true)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseName, new GUIContent("Name:"), 20, true, false)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, new GUIContent("Delay:"), 20, true, false)));
-            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, new GUIContent("Duration:"), 20, true, false)));
-            actions.Add(new Action(() => ShowLerpCurve(new GUIContent("Animation Curve"), lerpPlaystyleType, phaseDuration, phaseDelay)));
-            actions.Add(new Action(() => DisplayMainButton(new GUIContent("Edit Properties", "Allows you to add Properties and Fields from this component to lerp or set"), _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.PropertyManager)), true, null, 20)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDisabled, Helper.content_phaseDisabled, 20, false, true)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseName, Helper.content_phaseName, 20, true, false)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDelay, Helper.content_phaseDelay, 20, true, false)));
+            actions.Add(new Action(() => DisplayHorizontalProperty(phaseDuration, Helper.content_phaseDuration, 20, true, false)));
+            actions.Add(new Action(() => ShowLerpCurve(Helper.content_PhaseAnimationCurve, lerpPlaystyleType, phaseDuration, phaseDelay)));
+            actions.Add(new Action(() => DisplayMainButton(Helper.content_button_EditProperties, _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.PropertyManager)), true, null, 20)));
 
             DisplaySettingBox(Helper.content_SettingsBoxTitle_PhaseOptions, actions.ToArray(), 20);
-        }
-
-        private void ShowLerpCurve(GUIContent content, SerializedProperty animationCurveProperty, SerializedProperty durationProperty, SerializedProperty delayProperty, float leftRightPadding = 20)
-        {
-            if (durationProperty.floatValue <= 0)
-                return;
-
-            EditorGUILayout.Space();
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(leftRightPadding);
-            EditorGUILayout.LabelField(content);
-            AnimationCurve curve = animationCurveProperty.animationCurveValue;
-            Rect ranges = new Rect(delayProperty.floatValue, 0, durationProperty.floatValue, 1);
-            GUILayout.Space(leftRightPadding);
-            curve = EditorGUILayout.CurveField(curve, _editorStyles.lairinusBlue, ranges, GUILayout.Height(100), GUILayout.Width(150));
-            GUILayout.Space(leftRightPadding);
-            GUILayout.EndHorizontal();
-            animationCurveProperty.animationCurveValue = curve;
-            serializedObject.ApplyModifiedProperties();
         }
     }
 }

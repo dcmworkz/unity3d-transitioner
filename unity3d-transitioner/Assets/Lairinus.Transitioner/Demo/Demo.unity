@@ -277,6 +277,57 @@ MonoBehaviour:
       - serializedVersion: 2
         time: 0
         value: 0
+        inSlope: 0.5714286
+        outSlope: 0.5714286
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 3.5
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 1
+      _sf_parentComponent: {fileID: 1521046639}
+      _sf_memberName: isTrigger
+      _sf_memberValueString: False
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 0
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 2
+      _sf_parentComponent: {fileID: 1521046637}
+      _sf_memberName: aspect
+      _sf_memberValueString: False
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - _sf_disabled: 0
+    _sf_name: Phase 2
+    _sf_delay: 0
+    _sf_duration: 3.5
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -301,6 +352,104 @@ MonoBehaviour:
       - serializedVersion: 2
         time: 3.0186827
         value: 0.4585983
+        inSlope: -0.14603138
+        outSlope: -0.14603138
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 3.5
+        value: 1
+        inSlope: 0.5714286
+        outSlope: 0.5714286
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 1
+      _sf_parentComponent: {fileID: 1521046639}
+      _sf_memberName: isTrigger
+      _sf_memberValueString: False
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 0
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - _sf_disabled: 0
+    _sf_name: Phase 1
+    _sf_delay: 0
+    _sf_duration: 3.5
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 3.5
+        value: 1
+        inSlope: 0.5714286
+        outSlope: 0.5714286
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 1
+      _sf_parentComponent: {fileID: 1521046639}
+      _sf_memberName: isTrigger
+      _sf_memberValueString: False
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 0
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - _sf_disabled: 0
+    _sf_name: Phase 5
+    _sf_delay: 0
+    _sf_duration: 3.5
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 0.64720523
+        value: 0.487365
+        inSlope: 0.18578023
+        outSlope: 0.18578023
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.3236024
+        value: 0.16876665
+        inSlope: 0.018179417
+        outSlope: 0.018179417
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1.9306906
+        value: 0.64479005
+        inSlope: 0.47802925
+        outSlope: 0.47802925
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2.9779723
+        value: 0.4648544
         inSlope: -0.14603138
         outSlope: -0.14603138
         tangentMode: 0
@@ -398,7 +547,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1521046633}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -432,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99b559a6a559bf4f8ffdab237c07303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vector4pProp: {x: 0, y: 0, z: 0, w: 0}
+  vector4pProp: {x: 5, y: 5, z: 5, w: 1.1}
   newColorProp: {r: 0.711, g: 0.141, b: 0.141, a: 1}
   newBoolProp: 0
 --- !u!114 &1715990502
@@ -481,12 +630,42 @@ MonoBehaviour:
       _sf_memberValueString: RGBA(0.711, 0.141, 0.141, 1.000)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
+      _sf_useSeparateAnimationCurve: 1
       _sf_animationCurve:
         serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 0.2604527
+          value: 0.4824489
+          inSlope: -0.40262938
+          outSlope: -0.40262938
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 0.49200118
+          value: 0.2922564
+          inSlope: 1.027286
+          outSlope: 1.027286
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 0.65123487
+          value: 0.7883518
+          inSlope: 2.5495887
+          outSlope: 2.5495887
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
         m_RotationOrder: 0
   - _sf_disabled: 0
     _sf_name: Phase 2
@@ -515,6 +694,120 @@ MonoBehaviour:
       _sf_serializedPropertyType: 9
       _sf_parentComponent: {fileID: 1103058028}
       _sf_memberName: forward
+      _sf_memberValueString: (0.0, 0.0, 1.0)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 1
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 2
+          time: 0
+          value: 0
+          inSlope: 20
+          outSlope: 20
+          tangentMode: 0
+        - serializedVersion: 2
+          time: 0.1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+  - _sf_disabled: 0
+    _sf_name: Phase 3
+    _sf_delay: 0
+    _sf_duration: 0.1
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 9
+      _sf_parentComponent: {fileID: 1103058028}
+      _sf_memberName: forward
+      _sf_memberValueString: (0.0, 0.0, 1.0)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - _sf_disabled: 0
+    _sf_name: Phase 4
+    _sf_delay: 0
+    _sf_duration: 0.1
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 9
+      _sf_parentComponent: {fileID: 1103058028}
+      _sf_memberName: forward
+      _sf_memberValueString: (0.0, 0.0, 1.0)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 3
+      _sf_parentComponent: {fileID: 1715990501}
+      _sf_memberName: name
+      _sf_memberValueString: (0.0, 0.0, 1.0)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 9
+      _sf_parentComponent: {fileID: 1715990501}
+      _sf_memberName: vector3Prop
       _sf_memberValueString: (0.0, 0.0, 1.0)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1
