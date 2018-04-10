@@ -291,20 +291,6 @@ MonoBehaviour:
       m_RotationOrder: 0
     _sf_reflectedMembers:
     - _sf_memberType: 0
-      _sf_serializedPropertyType: 1
-      _sf_parentComponent: {fileID: 1521046639}
-      _sf_memberName: isTrigger
-      _sf_memberValueString: False
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 0
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-    - _sf_memberType: 0
       _sf_serializedPropertyType: 2
       _sf_parentComponent: {fileID: 1521046637}
       _sf_memberName: aspect
@@ -380,7 +366,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - _sf_disabled: 0
-    _sf_name: Phase 1
+    _sf_name: Phase 3
     _sf_delay: 0
     _sf_duration: 3.5
     _sf_lerpPlaystyleType:
@@ -417,7 +403,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - _sf_disabled: 0
-    _sf_name: Phase 5
+    _sf_name: Phase 4
     _sf_delay: 0
     _sf_duration: 3.5
     _sf_lerpPlaystyleType:
@@ -587,8 +573,7 @@ MonoBehaviour:
 --- !u!114 &1715990502
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114507658248890764, guid: 40d9646efc3c26c40a2a0e1e2356faac,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1715990500}
   m_Enabled: 1
@@ -597,224 +582,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sf_targetGameObject: {fileID: 1715990500}
-  _sf_disableTransition: 1
+  _sf_disableTransition: 0
   _sf_loop: 0
-  _sf_phases:
-  - _sf_disabled: 0
-    _sf_name: Phase 1
-    _sf_delay: 0
-    _sf_duration: 1
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers:
-    - _sf_memberType: 1
-      _sf_serializedPropertyType: 4
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: newColorProp
-      _sf_memberValueString: RGBA(0.711, 0.141, 0.141, 1.000)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 1
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 2
-          time: 0
-          value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-        - serializedVersion: 2
-          time: 0.2604527
-          value: 0.4824489
-          inSlope: -0.40262938
-          outSlope: -0.40262938
-          tangentMode: 0
-        - serializedVersion: 2
-          time: 0.49200118
-          value: 0.2922564
-          inSlope: 1.027286
-          outSlope: 1.027286
-          tangentMode: 0
-        - serializedVersion: 2
-          time: 0.65123487
-          value: 0.7883518
-          inSlope: 2.5495887
-          outSlope: 2.5495887
-          tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - _sf_disabled: 0
-    _sf_name: Phase 2
-    _sf_delay: 0
-    _sf_duration: 0.1
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers:
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
-      _sf_parentComponent: {fileID: 1103058028}
-      _sf_memberName: forward
-      _sf_memberValueString: (0.0, 0.0, 1.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 1
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 2
-          time: 0
-          value: 0
-          inSlope: 20
-          outSlope: 20
-          tangentMode: 0
-        - serializedVersion: 2
-          time: 0.1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-  - _sf_disabled: 0
-    _sf_name: Phase 3
-    _sf_delay: 0
-    _sf_duration: 0.1
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers:
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
-      _sf_parentComponent: {fileID: 1103058028}
-      _sf_memberName: forward
-      _sf_memberValueString: (0.0, 0.0, 1.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  - _sf_disabled: 0
-    _sf_name: Phase 4
-    _sf_delay: 0
-    _sf_duration: 0.1
-    _sf_lerpPlaystyleType:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 0
-    _sf_reflectedMembers:
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
-      _sf_parentComponent: {fileID: 1103058028}
-      _sf_memberName: forward
-      _sf_memberValueString: (0.0, 0.0, 1.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 3
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: name
-      _sf_memberValueString: (0.0, 0.0, 1.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-    - _sf_memberType: 0
-      _sf_serializedPropertyType: 9
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: vector3Prop
-      _sf_memberValueString: (0.0, 0.0, 1.0)
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
+  _sf_phases: []

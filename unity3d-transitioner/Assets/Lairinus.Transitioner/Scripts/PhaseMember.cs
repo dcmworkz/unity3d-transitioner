@@ -69,6 +69,17 @@ namespace Lairinus.Transitions
             else return null;
         }
 
+        public void UpdatePhaseMember(float curveTime, float actualTime)
+        {
+            float lerpTime = curveTime;
+            if (_sf_useSeparateAnimationCurve)
+                lerpTime = _sf_animationCurve.Evaluate(actualTime);
+
+            // TODO:
+            // Get Updated Value
+            // Update current value
+        }
+
         private void AssignReflectedMemberFields()
         {
             if (_sf_parentComponent == null)

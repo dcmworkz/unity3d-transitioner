@@ -11,7 +11,7 @@ namespace Lairinus.Transitions
         private SerializedProperty _currentSelectedPhaseProperty = null;
         private List<string> _phaseNames = new List<string>();
 
-        private void DisplayPhase(string name, float minWidthBigButton, int phaseIndex)
+        private void DisplayPhase(string name, float minWidthBigButton, int phaseIndex, int totalPhaseMemberCount)
         {
             // Creates The Phase buttons and icons.
             int capturedIndex = phaseIndex;
@@ -23,7 +23,13 @@ namespace Lairinus.Transitions
             if (_currentlySelectedPhaseIndex == capturedIndex)
             {
                 GUI.backgroundColor = _editorStyles.lairinusGreen;
-                if (GUILayout.Button(name, GUILayout.MinWidth(minWidthBigButton), GUILayout.Height(24)))
+                if (GUILayout.Button(new GUIContent(name), GUILayout.MinWidth(minWidthBigButton), GUILayout.Height(24)))
+                    HandleOnClick_SelectPhase(capturedIndex);
+            }
+            else if (totalPhaseMemberCount <= 0)
+            {
+                GUI.backgroundColor = _editorStyles.lairinusRed;
+                if (GUILayout.Button(new GUIContent(name, "There are no Members inside of this Phase. To add members, click this Phase and then click the \"Edit Members\" button"), GUILayout.MinWidth(minWidthBigButton), GUILayout.Height(24)))
                     HandleOnClick_SelectPhase(capturedIndex);
             }
             else
@@ -82,6 +88,9 @@ namespace Lairinus.Transitions
         private void HandleOnClick_AddPhase()
         {
             _phasesProperty.arraySize++;
+            SerializedProperty phaseSingle = _phasesProperty.GetArrayElementAtIndex(_phasesProperty.arraySize - 1);
+            SerializedProperty phaseName = phaseSingle.FindPropertyRelative(Helper.phaseProp_name);
+            phaseName.stringValue = "New Phase";
         }
 
         private void HandleOnClick_MovePhaseDown(int index)
@@ -140,7 +149,7 @@ namespace Lairinus.Transitions
                 {
                     int capturedCurrentIndex = a;
                     SerializedProperty serializedPhase = _phasesProperty.GetArrayElementAtIndex(capturedCurrentIndex);
-                    SerializedProperty serializedPhaseName = serializedPhase.FindPropertyRelative("_sf_name");
+                    SerializedProperty serializedPhaseName = serializedPhase.FindPropertyRelative(Helper.phaseProp_name);
                     _phaseNames.Add(serializedPhaseName.stringValue);
                 }
             }
@@ -148,7 +157,9 @@ namespace Lairinus.Transitions
             for (var a = 0; a < _phasesProperty.arraySize; a++)
             {
                 int capturedCurrentIndex = a;
-                Action phase = new Action(() => DisplayPhase(_phaseNames[capturedCurrentIndex], 100, capturedCurrentIndex));
+                SerializedProperty serializedPhase = _phasesProperty.GetArrayElementAtIndex(capturedCurrentIndex);
+                SerializedProperty serializedMembersArray = serializedPhase.FindPropertyRelative(Helper.phaseProp_reflectedMembers);
+                Action phase = new Action(() => DisplayPhase(_phaseNames[capturedCurrentIndex], 100, capturedCurrentIndex, serializedMembersArray.arraySize));
                 displayPhaseActions.Add(phase);
             }
 

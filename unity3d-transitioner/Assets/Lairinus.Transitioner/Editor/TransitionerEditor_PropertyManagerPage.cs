@@ -59,6 +59,7 @@ namespace Lairinus.Transitions
             GUILayout.Space(10);
             EditorGUILayout.EndVertical();
             serializedObject.ApplyModifiedProperties();
+            GUILayout.Space(20);
         }
 
         private void DisplayPhaseProperties()
@@ -106,7 +107,7 @@ namespace Lairinus.Transitions
             EditorGUILayout.BeginHorizontal();
             try
             {
-                UITransitioner targetObject = (UITransitioner)target;
+                Transitioner targetObject = (Transitioner)target;
                 if (GUILayout.Button(Helper.content_getValueButton))
                 {
                     object value = targetObject.phases[_currentlySelectedPhaseIndex].reflectedMembers[index].GetValue();

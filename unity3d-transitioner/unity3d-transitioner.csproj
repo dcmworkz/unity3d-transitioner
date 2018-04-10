@@ -299,7 +299,7 @@
   <ItemGroup>
     <Compile Include="Assets\Lairinus.Transitioner\Demo\LotsOfTypes.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Scripts\PhaseMember.cs" />
-    <Compile Include="Assets\Lairinus.Transitioner\Scripts\UITransitioner.cs" />
+    <Compile Include="Assets\Lairinus.Transitioner\Scripts\Transitioner.cs" />
     <Compile Include="Assets\Lairinus.Transitioner\Scripts\Utility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
