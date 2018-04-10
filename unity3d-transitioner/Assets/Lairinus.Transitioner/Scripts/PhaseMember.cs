@@ -71,13 +71,22 @@ namespace Lairinus.Transitions
 
         public void UpdatePhaseMember(float curveTime, float actualTime)
         {
-            float lerpTime = curveTime;
+            float lerpValueFloat = curveTime;
             if (_sf_useSeparateAnimationCurve)
-                lerpTime = _sf_animationCurve.Evaluate(actualTime);
+                lerpValueFloat = _sf_animationCurve.Evaluate(actualTime);
 
-            // TODO:
-            // Get Updated Value
-            // Update current value
+            if (_sf_canBeLerped)
+            {
+                string currentValue = GetValue().ToString();
+                string finalValue = _sf_memberValueString;
+                object lerpedValue = Utility.GetLerpedValue(currentValue, finalValue, _sf_serializedPropertyType, lerpValueFloat);
+                SetValue(lerpedValue);
+            }
+            else if (lerpValueFloat >= 1)
+            {
+                object finalValue = Utility.GetObject(Utility.GetInstance().reverseTypeDictionary[_sf_serializedPropertyType], _sf_memberValueString);
+                SetValue(finalValue);
+            }
         }
 
         private void AssignReflectedMemberFields()

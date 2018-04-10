@@ -18,11 +18,6 @@ namespace Lairinus.Transitions
         [System.Serializable]
         public class Phase
         {
-            public Phase()
-            {
-                _sf_name = "New Phase";
-            }
-
             [SerializeField] private bool _sf_disabled = false;
             [SerializeField] private string _sf_name = "New Phase";
             [SerializeField] private float _sf_delay = 0;

@@ -32,6 +32,69 @@ namespace Lairinus.Transitions.Internal
             Vector3Int = 21,
         }
 
+        public static object GetLerpedValue(string currentValueString, string finalValueString, AvailableMemberTypes memberType, float lerpedTime)
+        {
+            switch (memberType)
+            {
+                case AvailableMemberTypes.Color:
+                    {
+                        Color final = new Color();
+                        Color currentValueColor = GetObject<Color>(currentValueString);
+                        Color finalValueColor = GetObject<Color>(finalValueString);
+                        final = Color.Lerp(currentValueColor, finalValueColor, lerpedTime);
+                        return final;
+                    }
+
+                case AvailableMemberTypes.Float:
+                    {
+                        float final = 0;
+                        float currentValueFloat = float.Parse(currentValueString);
+                        float finalValueFloat = float.Parse(finalValueString);
+                        final = Mathf.Lerp(currentValueFloat, finalValueFloat, lerpedTime);
+                        return final;
+                    }
+
+                case AvailableMemberTypes.Vector2:
+                    {
+                        Vector2 final = new Vector2();
+                        Vector2 currentValueVector2 = GetObject<Vector2>(currentValueString);
+                        Vector2 finalValueVector2 = GetObject<Vector2>(currentValueString);
+                        final = Vector2.Lerp(currentValueVector2, finalValueVector2, lerpedTime);
+                        return final;
+                    }
+
+                case AvailableMemberTypes.Vector3:
+                    {
+                        Vector3 final = new Vector3();
+                        Vector3 currentValueVector3 = GetObject<Vector3>(currentValueString);
+                        Vector3 finalValueVector3 = GetObject<Vector3>(currentValueString);
+                        final = Vector3.Lerp(currentValueVector3, finalValueVector3, lerpedTime);
+                        return final;
+                    }
+
+                case AvailableMemberTypes.Vector4:
+                    {
+                        Vector4 final = new Vector4();
+                        Vector4 currentValueVector4 = GetObject<Vector4>(currentValueString);
+                        Vector4 finalValueVector4 = GetObject<Vector4>(currentValueString);
+                        final = Vector4.Lerp(currentValueVector4, finalValueVector4, lerpedTime);
+                        return final;
+                    }
+
+                case AvailableMemberTypes.Integer:
+                    {
+                        int final = 0;
+                        float currentInt = GetObject<int>(currentValueString);
+                        float finalInt = GetObject<int>(currentValueString);
+                        final = Mathf.RoundToInt(Mathf.Lerp(currentInt, finalInt, lerpedTime));
+                        return final;
+                    }
+
+                default:
+                    return new object();
+            }
+        }
+
         public static string GetAvailableMemberName(int availableMemberType)
         {
             return Enum.GetName(typeof(AvailableMemberTypes), availableMemberType);
