@@ -150,6 +150,7 @@ namespace Lairinus.Transitions
                             float value = 0;
                             float.TryParse(valueString, out value);
                             value = EditorGUILayout.FloatField(valueContent, value);
+                            stringValueProperty.stringValue = value.ToString();
                             break;
                         }
 
@@ -158,6 +159,7 @@ namespace Lairinus.Transitions
                             int value = 0;
                             int.TryParse(valueString, out value);
                             value = EditorGUILayout.IntField(valueContent, value);
+                            stringValueProperty.stringValue = value.ToString();
                             break;
                         }
 
@@ -210,8 +212,9 @@ namespace Lairinus.Transitions
                 }
                 serializedObject.ApplyModifiedProperties();
             }
-            catch
+            catch (System.Exception)
             {
+                int i = 0;
             }
         }
     }

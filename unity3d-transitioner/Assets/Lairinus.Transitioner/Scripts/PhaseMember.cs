@@ -43,6 +43,7 @@ namespace Lairinus.Transitions
         public FieldInfo field { get; private set; }
         public Utility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
         public bool isDisabled { get { return _sf_isDisabled; } }
+        private object _startValue = null;
 
         public void SetValue(object value)
         {
@@ -56,7 +57,10 @@ namespace Lairinus.Transitions
                 else if (_sf_memberType == MemberType.Property && property != null)
                     property.SetValue(_sf_parentComponent, value, null);
             }
-            catch { }
+            catch (System.Exception ex)
+            {
+                int i = 0;
+            }
         }
 
         public object GetValue()
@@ -66,18 +70,24 @@ namespace Lairinus.Transitions
                 return field.GetValue(_sf_parentComponent);
             else if (_sf_memberType == MemberType.Property && property != null)
                 return property.GetValue(_sf_parentComponent, null);
-            else return null;
+            else return new object();
         }
 
         public void UpdatePhaseMember(float curveTime, float actualTime)
         {
+            if (_sf_isDisabled)
+                return;
+
+            if (_startValue == null)
+                _startValue = GetValue();
+
             float lerpValueFloat = curveTime;
             if (_sf_useSeparateAnimationCurve)
                 lerpValueFloat = _sf_animationCurve.Evaluate(actualTime);
 
             if (_sf_canBeLerped)
             {
-                string currentValue = GetValue().ToString();
+                string currentValue = _startValue.ToString();
                 string finalValue = _sf_memberValueString;
                 object lerpedValue = Utility.GetLerpedValue(currentValue, finalValue, _sf_serializedPropertyType, lerpValueFloat);
                 SetValue(lerpedValue);
@@ -86,6 +96,7 @@ namespace Lairinus.Transitions
             {
                 object finalValue = Utility.GetObject(Utility.GetInstance().reverseTypeDictionary[_sf_serializedPropertyType], _sf_memberValueString);
                 SetValue(finalValue);
+                _startValue = null;
             }
         }
 

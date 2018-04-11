@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Lairinus.Transitions
 {
-    [ExecuteInEditMode]
     public class Transitioner : MonoBehaviour
     {
         [SerializeField] private GameObject _sf_targetGameObject = null;
@@ -36,13 +35,12 @@ namespace Lairinus.Transitions
                 foreach (PhaseMember phaseMember in reflectedMembers)
                 {
                     if (phaseMember != null)
-                        phaseMember.UpdatePhaseMember(_sf_lerpPlaystyleType.Evaluate(actualTime), actualTime);
+                    {
+                        float evaluatedValue = _sf_lerpPlaystyleType.Evaluate(actualTime);
+                        phaseMember.UpdatePhaseMember(evaluatedValue, actualTime);
+                    }
                 }
             }
-        }
-
-        private void Awake()
-        {
         }
 
         private float _currentLerpTime = 0;
@@ -51,7 +49,7 @@ namespace Lairinus.Transitions
 
         public bool IsFinishedPlaying()
         {
-            if (_currentPhaseIndex >= _sf_phases.Count - 1 && _currentLerpTime >= 1)
+            if (_currentPhaseIndex >= _sf_phases.Count && _currentLerpTime >= 1)
                 return true;
             return false;
         }
@@ -63,7 +61,9 @@ namespace Lairinus.Transitions
 
             UpdateTransition_CheckReset();
             UpdateTransition_SetAndUpdatePhase();
-            _currentLerpTime += updateInterval / _currentPhase.duration;
+
+            if (_currentPhase != null)
+                _currentLerpTime += updateInterval / _currentPhase.duration;
         }
 
         private void UpdateTransition_CheckReset()
@@ -78,10 +78,10 @@ namespace Lairinus.Transitions
         private void UpdateTransition_SetAndUpdatePhase()
         {
             _currentPhase = null;
-            if (_currentPhaseIndex < _sf_phases.Count - 1)
+            if (_currentPhaseIndex < _sf_phases.Count)
                 _currentPhase = _sf_phases[_currentPhaseIndex];
-            else
-                return;
+            else if (_sf_phases.Count > 0)
+                _currentPhase = _sf_phases[_sf_phases.Count - 1];
 
             if (_currentLerpTime <= 1)
             {
@@ -90,9 +90,15 @@ namespace Lairinus.Transitions
             }
             else
             {
+                _currentPhase.UpdatePhaseTransition(1, _currentPhase.duration);
                 _currentLerpTime = 0;
                 _currentPhaseIndex++;
             }
+        }
+
+        private void Update()
+        {
+            UpdateTransition(Time.deltaTime);
         }
     }
 }
