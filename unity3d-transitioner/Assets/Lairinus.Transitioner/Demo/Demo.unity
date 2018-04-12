@@ -201,6 +201,7 @@ RectTransform:
   - {fileID: 634067719}
   - {fileID: 1557682308}
   - {fileID: 1229028932}
+  - {fileID: 1555836641}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -286,6 +287,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1715990502}
+        m_MethodName: StartTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1555836642}
         m_MethodName: StartTransition
         m_Mode: 1
         m_Arguments:
@@ -487,6 +499,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1715990502}
+        m_MethodName: ResetTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1555836642}
         m_MethodName: ResetTransition
         m_Mode: 1
         m_Arguments:
@@ -700,6 +723,165 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1555836640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1555836641}
+  - component: {fileID: 1555836644}
+  - component: {fileID: 1555836643}
+  - component: {fileID: 1555836642}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1555836641
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555836640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 238391588}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -480, y: 154}
+  m_SizeDelta: {x: 410.84998, y: 230.83002}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1555836642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555836640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f12a917f16e6449938d5f47f43eb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sf_disableTransition: 0
+  _sf_loop: 1
+  _sf_phases:
+  - _sf_delay: 0
+    _sf_disabled: 0
+    _sf_duration: 2
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2
+        value: 1
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_name: Phase 1
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 4
+      _sf_parentComponent: {fileID: 1555836643}
+      _sf_memberName: color
+      _sf_memberValueString: RGBA(0.036, 0.965, 1.000, 1.000)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - _sf_delay: 0
+    _sf_disabled: 0
+    _sf_duration: 2
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 2
+        value: 1
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_name: Phase 2
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 4
+      _sf_parentComponent: {fileID: 1555836643}
+      _sf_memberName: color
+      _sf_memberValueString: RGBA(1.000, 0.000, 0.000, 1.000)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  _sf_targetGameObject: {fileID: 1555836640}
+  _sf_playOnAwake: 1
+--- !u!114 &1555836643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555836640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1555836644
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555836640}
 --- !u!1 &1557682307
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +959,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1715990502}
+        m_MethodName: StopTransition
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1555836642}
         m_MethodName: StopTransition
         m_Mode: 6
         m_Arguments:
@@ -1062,6 +1255,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   _sf_targetGameObject: {fileID: 1715990500}
+  _sf_playOnAwake: 0
 --- !u!1 &1731904196
 GameObject:
   m_ObjectHideFlags: 0

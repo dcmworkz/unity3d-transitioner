@@ -41,6 +41,7 @@ namespace Lairinus.Transitions
         private SerializedProperty _phasesProperty = null;
         private SerializedProperty _targetGameObject = null;
         private SerializedProperty disableTransition = null;
+        private SerializedProperty _phaseProperty_PlayOnAwake = null;
 
         private void DisplayHorizontalProperty(SerializedProperty property, GUIContent content, float padding, bool includeSpaceBefore = false, bool includeSpaceAfter = false, float customHeight = -1)
         {
@@ -80,6 +81,7 @@ namespace Lairinus.Transitions
             disableTransition = serializedObject.FindProperty("_sf_disableTransition");
             _loop = serializedObject.FindProperty("_sf_loop");
             _phasesProperty = serializedObject.FindProperty("_sf_phases");
+            _phaseProperty_PlayOnAwake = serializedObject.FindProperty(Helper.phaseProp_playOnAwake);
         }
 
         private void OnDisable()
@@ -151,6 +153,7 @@ namespace Lairinus.Transitions
             // Phases -> Properties
             public const string phaseProp_Delay = "_sf_delay";
 
+            public const string phaseProp_playOnAwake = "_sf_playOnAwake";
             public const string phaseProp_disabled = "_sf_disabled";
             public const string phaseProp_Duration = "_sf_duration";
             public const string phaseProp_lerpPlaystyleType = "_sf_lerpPlaystyleType";
@@ -170,6 +173,7 @@ namespace Lairinus.Transitions
             public static GUIContent content_getValueButton = new GUIContent("Get", "Applies the value found on the object to this Phase Member");
 
             public static GUIContent content_loopTransition = new GUIContent("Loop", "If enabled, the transition will continuously play until it is manually stopped, or this property gets disabled");
+            public static GUIContent content_playOnAwake = new GUIContent("Play on Awake", "Plays this animation when MonoBehaviour.Awake() is called.");
             public static GUIContent content_mainButton_modifyPhases = new GUIContent("Modify Phases", "Allows you to modify the Phases inside of this transition.");
             public static GUIContent content_MovePhaseDown = new GUIContent("", "Moves this Phase one down");
             public static GUIContent content_MovePhaseUp = new GUIContent("", "Moves this Phase one up");

@@ -77,6 +77,7 @@ namespace Lairinus.Transitions
         [SerializeField] private bool _sf_loop = false;
         [SerializeField] private List<Phase> _sf_phases = new List<Phase>();
         [SerializeField] private GameObject _sf_targetGameObject = null;
+        [SerializeField] private bool _sf_playOnAwake = false;
         private float _totalTimeDelayed = 0;
 
         private void UpdateTransition_SetPhase()
@@ -128,7 +129,8 @@ namespace Lairinus.Transitions
 
         private void Awake()
         {
-            StartTransition();
+            if (_sf_playOnAwake)
+                StartTransition();
         }
 
         private void UpdateTransition_CheckReset()

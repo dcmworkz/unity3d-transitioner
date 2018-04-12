@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace Lairinus.Transitions.Internal
 {
-    [ExecuteInEditMode]
     public class Utility : MonoBehaviour
     {
         private Dictionary<Type, AvailableMemberTypes> _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
@@ -59,7 +58,7 @@ namespace Lairinus.Transitions.Internal
                     {
                         Vector2 final = new Vector2();
                         Vector2 currentValueVector2 = GetObject<Vector2>(currentValueString);
-                        Vector2 finalValueVector2 = GetObject<Vector2>(currentValueString);
+                        Vector2 finalValueVector2 = GetObject<Vector2>(finalValueString);
                         final = Vector2.Lerp(currentValueVector2, finalValueVector2, lerpedTime);
                         return final;
                     }
@@ -68,7 +67,7 @@ namespace Lairinus.Transitions.Internal
                     {
                         Vector3 final = new Vector3();
                         Vector3 currentValueVector3 = GetObject<Vector3>(currentValueString);
-                        Vector3 finalValueVector3 = GetObject<Vector3>(currentValueString);
+                        Vector3 finalValueVector3 = GetObject<Vector3>(finalValueString);
                         final = Vector3.Lerp(currentValueVector3, finalValueVector3, lerpedTime);
                         return final;
                     }
@@ -77,7 +76,7 @@ namespace Lairinus.Transitions.Internal
                     {
                         Vector4 final = new Vector4();
                         Vector4 currentValueVector4 = GetObject<Vector4>(currentValueString);
-                        Vector4 finalValueVector4 = GetObject<Vector4>(currentValueString);
+                        Vector4 finalValueVector4 = GetObject<Vector4>(finalValueString);
                         final = Vector4.Lerp(currentValueVector4, finalValueVector4, lerpedTime);
                         return final;
                     }
@@ -86,7 +85,7 @@ namespace Lairinus.Transitions.Internal
                     {
                         int final = 0;
                         float currentInt = GetObject<int>(currentValueString);
-                        float finalInt = GetObject<int>(currentValueString);
+                        float finalInt = GetObject<int>(finalValueString);
                         final = Mathf.RoundToInt(Mathf.Lerp(currentInt, finalInt, lerpedTime));
                         return final;
                     }

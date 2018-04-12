@@ -18,8 +18,9 @@ namespace Lairinus.Transitions
         {
             Action targetGOProperty = () => DisplayHorizontalProperty(_targetGameObject, Helper.content_targetGameObject, 20, false, true);
             Action enableTransitionProperty = () => DisplayHorizontalProperty(disableTransition, Helper.content_disableTransition, 20, false, true);
-            Action loopProperty = () => DisplayHorizontalProperty(_loop, Helper.content_loopTransition, 20, false, false);
-            Action[] actions = { targetGOProperty, enableTransitionProperty, loopProperty };
+            Action loopProperty = () => DisplayHorizontalProperty(_loop, Helper.content_loopTransition, 20, false, true);
+            Action playOnAwake = () => DisplayHorizontalProperty(_phaseProperty_PlayOnAwake, Helper.content_playOnAwake, 20, false, false);
+            Action[] actions = { targetGOProperty, enableTransitionProperty, loopProperty, playOnAwake };
             DisplaySettingBox(Helper.content_SettingsBoxTitle_BasicSettings, actions, 20);
             GUILayout.Space(20);
             DisplayMainButton(Helper.content_mainButton_modifyPhases, _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
