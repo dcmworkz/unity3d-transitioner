@@ -106,6 +106,7 @@ namespace Lairinus.Transitions
 
         private void ShowLerpCurve(GUIContent content, SerializedProperty animationCurveProperty, SerializedProperty durationProperty, SerializedProperty delayProperty, float leftRightPadding = 20)
         {
+            // TODO: Remove "Delay" reference from this code..
             if (durationProperty.floatValue <= 0)
                 return;
 
@@ -114,7 +115,7 @@ namespace Lairinus.Transitions
             GUILayout.Space(leftRightPadding);
             EditorGUILayout.LabelField(content);
             AnimationCurve curve = animationCurveProperty.animationCurveValue;
-            Rect ranges = new Rect(delayProperty.floatValue, 0, durationProperty.floatValue, 1);
+            Rect ranges = new Rect(0, 0, durationProperty.floatValue, 1);
             GUILayout.Space(leftRightPadding);
             curve = EditorGUILayout.CurveField(curve, _editorStyles.lairinusBlue, ranges, GUILayout.Height(100), GUILayout.Width(150));
             GUILayout.Space(leftRightPadding);

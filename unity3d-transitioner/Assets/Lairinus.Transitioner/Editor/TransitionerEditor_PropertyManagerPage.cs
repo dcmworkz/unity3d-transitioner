@@ -212,9 +212,8 @@ namespace Lairinus.Transitions
                 }
                 serializedObject.ApplyModifiedProperties();
             }
-            catch (System.Exception)
+            catch
             {
-                int i = 0;
             }
         }
     }

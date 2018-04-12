@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace Lairinus.Transitions.Internal
 {
@@ -353,6 +354,54 @@ namespace Lairinus.Transitions.Internal
             {
                 return new Vector2();
             }
+        }
+
+        private static Dictionary<int, Transitioner> _transitionsToStart = new Dictionary<int, Transitioner>();
+        private static Dictionary<int, Transitioner> _transitionsToStop = new Dictionary<int, Transitioner>();
+        private static Dictionary<int, Transitioner> _transitionsCurrentlyRunning = new Dictionary<int, Transitioner>();
+
+        public void StartTransitioner(Transitioner transitioner)
+        {
+            if (transitioner == null)
+                return;
+
+            int key = transitioner.GetInstanceID();
+            if (!_transitionsToStart.ContainsKey(key) && !_transitionsToStop.ContainsKey(key) && !_transitionsCurrentlyRunning.ContainsKey(key))
+                _transitionsToStart.Add(key, transitioner);
+        }
+
+        public void StopTransitioner(Transitioner transitioner)
+        {
+            if (transitioner == null)
+                return;
+
+            int key = transitioner.GetInstanceID();
+            if (_transitionsToStart.ContainsKey(key))
+                _transitionsToStart.Remove(key);
+            else if (!_transitionsToStop.ContainsKey(key))
+                _transitionsToStop.Add(key, transitioner);
+        }
+
+        private void Update()
+        {
+            List<int> transitionsToStop = _transitionsToStop.Keys.ToList();
+            foreach (int transitionToStop in transitionsToStop)
+            {
+                if (_transitionsCurrentlyRunning.ContainsKey(transitionToStop))
+                    _transitionsCurrentlyRunning.Remove(transitionToStop);
+            }
+            _transitionsToStop.Clear();
+
+            foreach (KeyValuePair<int, Transitioner> kvp in _transitionsToStart)
+            {
+                if (kvp.Value != null && !_transitionsCurrentlyRunning.ContainsKey(kvp.Key))
+                    _transitionsCurrentlyRunning.Add(kvp.Key, kvp.Value);
+            }
+            _transitionsToStart.Clear();
+
+            float deltaTime = Time.deltaTime;
+            List<Transitioner> runningTransitions = _transitionsCurrentlyRunning.Values.ToList();
+            runningTransitions.ForEach(x => x.UpdateTransition(deltaTime));
         }
     }
 }

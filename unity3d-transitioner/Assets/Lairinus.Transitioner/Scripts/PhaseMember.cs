@@ -44,6 +44,7 @@ namespace Lairinus.Transitions
         public Utility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
         public bool isDisabled { get { return _sf_isDisabled; } }
         private object _startValue = null;
+        private object _resetValue = null;
 
         public void SetValue(object value)
         {
@@ -57,9 +58,8 @@ namespace Lairinus.Transitions
                 else if (_sf_memberType == MemberType.Property && property != null)
                     property.SetValue(_sf_parentComponent, value, null);
             }
-            catch (System.Exception ex)
+            catch
             {
-                int i = 0;
             }
         }
 
@@ -73,13 +73,19 @@ namespace Lairinus.Transitions
             else return new object();
         }
 
-        public void UpdatePhaseMember(float curveTime, float actualTime)
+        public void UpdatePhaseMember(float curveTime, float actualTime, bool isResetting)
         {
             if (_sf_isDisabled)
                 return;
 
+            if (isResetting)
+                _startValue = _resetValue;
+
             if (_startValue == null)
                 _startValue = GetValue();
+
+            if (_resetValue == null)
+                _resetValue = _startValue;
 
             float lerpValueFloat = curveTime;
             if (_sf_useSeparateAnimationCurve)
@@ -91,6 +97,8 @@ namespace Lairinus.Transitions
                 string finalValue = _sf_memberValueString;
                 object lerpedValue = Utility.GetLerpedValue(currentValue, finalValue, _sf_serializedPropertyType, lerpValueFloat);
                 SetValue(lerpedValue);
+                if (lerpValueFloat >= 1)
+                    _startValue = null;
             }
             else if (lerpValueFloat >= 1)
             {
