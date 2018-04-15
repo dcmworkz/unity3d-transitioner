@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Lairinus.Transitions
 {
@@ -16,12 +17,28 @@ namespace Lairinus.Transitions
 
         private void DrawBasicSettings()
         {
-            Action targetGOProperty = () => DisplayHorizontalProperty(_targetGameObject, Helper.content_targetGameObject, 20, false, true);
-            Action enableTransitionProperty = () => DisplayHorizontalProperty(disableTransition, Helper.content_disableTransition, 20, false, true);
-            Action loopProperty = () => DisplayHorizontalProperty(_loop, Helper.content_loopTransition, 20, false, true);
-            Action playOnAwake = () => DisplayHorizontalProperty(_phaseProperty_PlayOnAwake, Helper.content_playOnAwake, 20, false, false);
-            Action[] actions = { targetGOProperty, enableTransitionProperty, loopProperty, playOnAwake };
-            DisplaySettingBox(Helper.content_SettingsBoxTitle_BasicSettings, actions, 20);
+            UnityEngine.Object oldObjectValue = _targetGameObject.objectReferenceValue;
+            List<Action> basicSettingsArray = new List<Action>();
+            basicSettingsArray.Add(() => DisplayHorizontalProperty(_targetGameObject, Helper.content_targetGameObject, 20, false, true));
+            basicSettingsArray.Add(() => DisplayHorizontalProperty(disableTransition, Helper.content_disableTransition, 20, false, true));
+            basicSettingsArray.Add(() => DisplayHorizontalProperty(_loop, Helper.content_loopTransition, 20, false, true));
+            basicSettingsArray.Add(() => DisplayHorizontalProperty(_phaseProperty_PlayOnAwake, Helper.content_playOnAwake, 20, false, false));
+            DisplaySettingBox(Helper.content_SettingsBoxTitle_BasicSettings, basicSettingsArray.ToArray(), 20);
+
+            UnityEngine.Object newObjectValue = _targetGameObject.objectReferenceValue;
+            if (oldObjectValue != null && oldObjectValue != newObjectValue)
+            {
+                if (EditorUtility.DisplayDialog("Confirm changing 'Target GameObject'", "Are you sure that you wish to change the target GameObject? This will reset all of the Phases attached to this Transitioner", "Yes", "Cancel"))
+                {
+                    _currentlySelectedPhaseIndex = 0;
+                    _currentSelectedPhaseProperty = null;
+                    _allReflectedPhaseMembers = new List<PhaseMember>();
+                    _phasesProperty.arraySize = 0;
+                }
+                else
+                    _targetGameObject.objectReferenceValue = oldObjectValue;
+            }
+
             GUILayout.Space(20);
             DisplayMainButton(Helper.content_mainButton_modifyPhases, _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
         }

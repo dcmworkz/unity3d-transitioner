@@ -14,26 +14,60 @@ namespace Lairinus.Transitions
 
         public bool IsFinishedPlaying()
         {
-            if (_currentPhaseIndex >= _sf_phases.Count && _currentLerpTime >= 1)
+            if (_currentPhaseIndex >= _sf_phases.Count && !_sf_loop)
                 return true;
             return false;
         }
 
-        public void UpdateTransition(float updateInterval)
+        public void ResetTransition()
         {
-            if (IsFinishedPlaying() && !_sf_loop)
-                return;
+            _currentLerpTime = 0;
+            _currentPhaseIndex = 0;
+            _sf_phases.Where(x => x != null).ToList().ForEach(X => X.UpdatePhaseTransition(0, 0, true));
+        }
 
-            bool wasDelayed = _isCurrentlyDelayed;
+        public void StartTransition()
+        {
+            Utility.GetInstance().StartTransitioner(this);
+        }
+
+        public void StopTransition(bool reset = false)
+        {
+            Utility.GetInstance().StopTransitioner(this);
+            if (reset)
+                ResetTransition();
+        }
+
+        public float GetTotalLiveTime()
+        {
+            // Gets the total time that this transitioner is alive for
+            if (_sf_loop)
+                return float.MaxValue;
+
+            float totalTime = 0;
+            foreach (Phase phase in _sf_phases)
+            {
+                if (phase != null)
+                    totalTime += phase.delay + phase.duration;
+            }
+            return totalTime;
+        }
+
+        public void UpdateTransition_Internal(float updateInterval)
+        {
+            // Called after the transition is started and while it is being played.
+            if (IsFinishedPlaying())
+            {
+                StopTransition(false);
+                return;
+            }
+
             UpdateTransition_SetPhase();
-            UpdateTransition_UpdateDelay(updateInterval);
+            UpdateTransition_UpdatePhaseDelay(updateInterval);
             if (!_isCurrentlyDelayed)
             {
-                if (wasDelayed)
-                    _currentLerpTime = 0;
-
                 UpdateTransition_CheckReset();
-                UpdateTransition_SetAndUpdatePhase();
+                UpdateTransition_UpdateCurrentPhase();
                 if (_currentPhase != null)
                     _currentLerpTime += updateInterval / _currentPhase.duration;
             }
@@ -55,8 +89,8 @@ namespace Lairinus.Transitions
                 {
                     if (phaseMember != null)
                     {
-                        float evaluatedValue = _sf_lerpPlaystyleType.Evaluate(actualTime);
-                        phaseMember.UpdatePhaseMember(evaluatedValue, actualTime, isResetting);
+                        float evaluatedCurveValue = _sf_lerpPlaystyleType.Evaluate(actualTime);
+                        phaseMember.UpdatePhaseMember(evaluatedCurveValue, actualTime, isResetting);
                     }
                 }
             }
@@ -76,56 +110,9 @@ namespace Lairinus.Transitions
         [SerializeField] private bool _sf_disableTransition = false;
         [SerializeField] private bool _sf_loop = false;
         [SerializeField] private List<Phase> _sf_phases = new List<Phase>();
-        [SerializeField] private GameObject _sf_targetGameObject = null;
         [SerializeField] private bool _sf_playOnAwake = false;
+        [SerializeField] private GameObject _sf_targetGameObject = null;
         private float _totalTimeDelayed = 0;
-
-        private void UpdateTransition_SetPhase()
-        {
-            _currentPhase = null;
-            if (_currentPhaseIndex < _sf_phases.Count)
-                _currentPhase = _sf_phases[_currentPhaseIndex];
-            else if (_sf_phases.Count > 0)
-            {
-                _currentPhase = _sf_phases[0];
-                _currentPhaseIndex = 0;
-            }
-        }
-
-        public void StartTransition()
-        {
-            Utility.GetInstance().StartTransitioner(this);
-        }
-
-        public void StopTransition(bool reset = false)
-        {
-            Utility.GetInstance().StopTransitioner(this);
-            if (reset)
-                ResetTransition();
-        }
-
-        public void ResetTransition()
-        {
-            _currentLerpTime = 0;
-            _currentPhaseIndex = 0;
-            _sf_phases.Where(x => x != null).ToList().ForEach(X => X.UpdatePhaseTransition(0, 0, true));
-        }
-
-        private void UpdateTransition_UpdateDelay(float updateInterval)
-        {
-            if (_currentPhase == null)
-                return;
-
-            if (_currentPhase.delay > 0 && _totalTimeDelayed < _currentPhase.delay)
-            {
-                _totalTimeDelayed += updateInterval;
-                _isCurrentlyDelayed = true;
-            }
-            else
-            {
-                _isCurrentlyDelayed = false;
-            }
-        }
 
         private void Awake()
         {
@@ -135,6 +122,7 @@ namespace Lairinus.Transitions
 
         private void UpdateTransition_CheckReset()
         {
+            // Allows the Phase to be reset if it is currently looping
             if (IsFinishedPlaying() && _sf_loop)
             {
                 _currentLerpTime = 0;
@@ -142,8 +130,22 @@ namespace Lairinus.Transitions
             }
         }
 
-        private void UpdateTransition_SetAndUpdatePhase()
+        private void UpdateTransition_SetPhase()
         {
+            // If looping, this infinitely sets a phase. Otherwise it properly stops the transitions
+            _currentPhase = null;
+            if (_currentPhaseIndex < _sf_phases.Count)
+                _currentPhase = _sf_phases[_currentPhaseIndex];
+            else if (_sf_phases.Count > 0 && _sf_loop)
+            {
+                _currentPhase = _sf_phases[0];
+                _currentPhaseIndex = 0;
+            }
+        }
+
+        private void UpdateTransition_UpdateCurrentPhase()
+        {
+            // Updates the current phase based on the index
             if (_currentLerpTime <= 1)
             {
                 if (_currentPhase != null)
@@ -157,6 +159,21 @@ namespace Lairinus.Transitions
                 _totalTimeDelayed = 0;
                 _currentPhaseIndex++;
             }
+        }
+
+        private void UpdateTransition_UpdatePhaseDelay(float updateInterval)
+        {
+            // Handles the delay attached to a Phase, if applicable
+            if (_currentPhase == null)
+                return;
+
+            if (_currentPhase.delay > 0 && _totalTimeDelayed < _currentPhase.delay)
+            {
+                _totalTimeDelayed += updateInterval;
+                _isCurrentlyDelayed = true;
+            }
+            else
+                _isCurrentlyDelayed = false;
         }
     }
 }

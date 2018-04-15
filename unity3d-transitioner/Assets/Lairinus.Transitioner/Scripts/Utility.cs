@@ -400,7 +400,7 @@ namespace Lairinus.Transitions.Internal
 
             float deltaTime = Time.deltaTime;
             List<Transitioner> runningTransitions = _transitionsCurrentlyRunning.Values.ToList();
-            runningTransitions.ForEach(x => x.UpdateTransition(deltaTime));
+            runningTransitions.ForEach(x => x.UpdateTransition_Internal(deltaTime));
         }
     }
 }

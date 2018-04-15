@@ -55,7 +55,7 @@ namespace Lairinus.Transitions
                 GUILayout.Space(5);
             }
 
-            DisplayMainButton(new GUIContent("Remove Member", "Removes this member from the Phase"), _editorStyles.lairinusRed, new Action(() => OnHandleClick_RemovePhaseMember(reflectedPhaseMembersListProperty, index)));
+            DisplayMainButton(new GUIContent("Remove Member", "Removes this member from the Phase"), _editorStyles.lairinusRed, new Action(() => OnHandleClick_RemovePhaseMember(reflectedPhaseMembersListProperty, index, rmMemberName.stringValue)));
             GUILayout.Space(10);
             EditorGUILayout.EndVertical();
             serializedObject.ApplyModifiedProperties();
@@ -81,18 +81,21 @@ namespace Lairinus.Transitions
             if (_currentPage != Pages.PropertyManager)
                 return;
 
-            Action openPage = new Action(() => OpenPage(Pages.Phases));
-            DisplayMainButton(new GUIContent("Back", "Returns to the Phases page"), _editorStyles.lairinusRed, openPage, true, null, 20, 20);
+            DisplayPhaseProperties();
 
             Action openPropertySelectionPage = new Action(() => OpenPage(Pages.PropertySelector));
-            DisplayMainButton(new GUIContent("Add Members", "Adds more fields and/or properties to this phase"), _editorStyles.lairinusGreen, openPropertySelectionPage, true, null, 20, 20);
+            DisplayMainButton(new GUIContent("Add Members", "Adds more fields and/or properties to this phase"), _editorStyles.lairinusGreen, openPropertySelectionPage, true, null, 10, 10);
 
-            DisplayPhaseProperties();
+            Action openPage = new Action(() => OpenPage(Pages.Phases));
+            DisplayMainButton(new GUIContent("Back", "Returns to the Phases page"), _editorStyles.lairinusRed, openPage, true, null, 10, 10);
         }
 
-        private void OnHandleClick_RemovePhaseMember(SerializedProperty phaseMemberListProperty, int index)
+        private void OnHandleClick_RemovePhaseMember(SerializedProperty phaseMemberListProperty, int index, string memberName)
         {
             if (phaseMemberListProperty == null)
+                return;
+
+            if (!EditorUtility.DisplayDialog("Confirm removing Phase Member " + memberName, "Are you sure you wish to remove this phase member?", "Yes", "Cancel"))
                 return;
 
             if (index > -1 && index < phaseMemberListProperty.arraySize)

@@ -8,17 +8,4 @@ public class LotsOfTypes : MonoBehaviour
     public Color newColorProp;
     public float floatValue = 10;
     public bool newBoolProp = false;
-
-    public void Start()
-    {
-        foreach (FieldInfo componentFieldInfo in this.GetType().GetFields())
-        {
-            if (componentFieldInfo.Name == "vector4pProp")
-            {
-                Vector4 prop = Vector4.one;
-                object obj = prop;
-                componentFieldInfo.SetValue(this, obj);
-            }
-        }
-    }
 }

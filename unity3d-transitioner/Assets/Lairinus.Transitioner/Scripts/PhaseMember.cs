@@ -51,7 +51,7 @@ namespace Lairinus.Transitions
             try
             {
                 if (field == null && property == null)
-                    AssignReflectedMemberFields();
+                    TryCacheReflectedMemberFields();
 
                 if (_sf_memberType == MemberType.Field && field != null)
                     field.SetValue(_sf_parentComponent, value);
@@ -65,7 +65,7 @@ namespace Lairinus.Transitions
 
         public object GetValue()
         {
-            AssignReflectedMemberFields();
+            TryCacheReflectedMemberFields();
             if (_sf_memberType == MemberType.Field && field != null)
                 return field.GetValue(_sf_parentComponent);
             else if (_sf_memberType == MemberType.Property && property != null)
@@ -108,8 +108,10 @@ namespace Lairinus.Transitions
             }
         }
 
-        private void AssignReflectedMemberFields()
+        private void TryCacheReflectedMemberFields()
         {
+            // Reduces some of the burden of Reflection which is highly appreciated considering
+            // that Reflection.Emit() is unusable for iOS because of AOT vs JIT limitations... :(
             if (_sf_parentComponent == null)
                 return;
 
@@ -118,8 +120,7 @@ namespace Lairinus.Transitions
                 if (property == null)
                     property = _sf_parentComponent.GetType().GetProperty(_sf_memberName);
             }
-
-            if (_sf_memberType == MemberType.Field)
+            else
             {
                 if (field == null)
                     field = _sf_parentComponent.GetType().GetField(_sf_memberName);

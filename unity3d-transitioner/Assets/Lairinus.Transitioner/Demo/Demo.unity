@@ -775,21 +775,21 @@ MonoBehaviour:
   _sf_phases:
   - _sf_delay: 0
     _sf_disabled: 0
-    _sf_duration: 2
+    _sf_duration: 1
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 0.5
-        outSlope: 0.5
+        inSlope: 1
+        outSlope: 1
         tangentMode: 0
       - serializedVersion: 2
-        time: 2
+        time: 1
         value: 1
-        inSlope: 0.5
-        outSlope: 0.5
+        inSlope: 1
+        outSlope: 1
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -800,7 +800,7 @@ MonoBehaviour:
       _sf_serializedPropertyType: 4
       _sf_parentComponent: {fileID: 1555836643}
       _sf_memberName: color
-      _sf_memberValueString: RGBA(0.036, 0.965, 1.000, 1.000)
+      _sf_memberValueString: RGBA(0.000, 1.000, 0.892, 1.000)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1
       _sf_useSeparateAnimationCurve: 0
@@ -812,21 +812,21 @@ MonoBehaviour:
         m_RotationOrder: 0
   - _sf_delay: 0
     _sf_disabled: 0
-    _sf_duration: 2
+    _sf_duration: 1
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 0.5
-        outSlope: 0.5
+        inSlope: 1
+        outSlope: 1
         tangentMode: 0
       - serializedVersion: 2
-        time: 2
+        time: 1
         value: 1
-        inSlope: 0.5
-        outSlope: 0.5
+        inSlope: 1
+        outSlope: 1
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -837,7 +837,7 @@ MonoBehaviour:
       _sf_serializedPropertyType: 4
       _sf_parentComponent: {fileID: 1555836643}
       _sf_memberName: color
-      _sf_memberValueString: RGBA(1.000, 0.000, 0.000, 1.000)
+      _sf_memberValueString: RGBA(0.657, 0.395, 0.036, 1.000)
       _sf_isDisabled: 0
       _sf_canBeLerped: 1
       _sf_useSeparateAnimationCurve: 0
@@ -847,8 +847,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  _sf_targetGameObject: {fileID: 1555836640}
   _sf_playOnAwake: 1
+  _sf_targetGameObject: {fileID: 1555836640}
 --- !u!114 &1555836643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,34 +1161,6 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-    - _sf_memberType: 1
-      _sf_serializedPropertyType: 2
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: floatValue
-      _sf_memberValueString: 100
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-    - _sf_memberType: 1
-      _sf_serializedPropertyType: 1
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: newBoolProp
-      _sf_memberValueString: False
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 0
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
   - _sf_delay: 1
     _sf_disabled: 0
     _sf_duration: 2
@@ -1227,20 +1199,6 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
     - _sf_memberType: 1
-      _sf_serializedPropertyType: 2
-      _sf_parentComponent: {fileID: 1715990501}
-      _sf_memberName: floatValue
-      _sf_memberValueString: 0
-      _sf_isDisabled: 0
-      _sf_canBeLerped: 1
-      _sf_useSeparateAnimationCurve: 0
-      _sf_animationCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-    - _sf_memberType: 1
       _sf_serializedPropertyType: 1
       _sf_parentComponent: {fileID: 1715990501}
       _sf_memberName: newBoolProp
@@ -1254,8 +1212,8 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  _sf_targetGameObject: {fileID: 1715990500}
   _sf_playOnAwake: 0
+  _sf_targetGameObject: {fileID: 819988163}
 --- !u!1 &1731904196
 GameObject:
   m_ObjectHideFlags: 0
