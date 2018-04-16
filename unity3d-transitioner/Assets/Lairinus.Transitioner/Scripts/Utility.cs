@@ -90,6 +90,12 @@ namespace Lairinus.Transitions.Internal
                         return final;
                     }
 
+                case AvailableMemberTypes.String:
+                    {
+                        int maxIndexFromLerp = Mathf.RoundToInt(finalValueString.Length * lerpedTime);
+                        return finalValueString.Substring(0, maxIndexFromLerp);
+                    }
+
                 default:
                     return new object();
             }

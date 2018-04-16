@@ -146,11 +146,14 @@ namespace Lairinus.Transitions
         private void UpdateTransition_UpdateCurrentPhase()
         {
             // Updates the current phase based on the index
-            if (_currentLerpTime <= 1)
+            if (_currentPhase != null && _currentPhase.disabled)
             {
-                if (_currentPhase != null)
-                    _currentPhase.UpdatePhaseTransition(_currentLerpTime, _currentLerpTime * _currentPhase.duration, false);
+                _currentPhaseIndex++;
+                return;
             }
+
+            if (_currentLerpTime <= 1 && _currentPhase != null)
+                _currentPhase.UpdatePhaseTransition(_currentLerpTime, _currentLerpTime * _currentPhase.duration, false);
             else
             {
                 _currentPhase.UpdatePhaseTransition(1, _currentPhase.duration, false);

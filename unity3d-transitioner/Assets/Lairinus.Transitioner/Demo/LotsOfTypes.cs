@@ -8,4 +8,6 @@ public class LotsOfTypes : MonoBehaviour
     public Color newColorProp;
     public float floatValue = 10;
     public bool newBoolProp = false;
+    public int intType = 10;
+    public string stringValue = "";
 }

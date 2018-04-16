@@ -45,6 +45,7 @@ namespace Lairinus.Transitions
         public bool isDisabled { get { return _sf_isDisabled; } }
         private object _startValue = null;
         private object _resetValue = null;
+        private object _finalValueObject = null;
 
         public void SetValue(object value)
         {
