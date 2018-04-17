@@ -2,6 +2,7 @@
 using UnityEngine;
 using Lairinus.Transitions.Internal;
 using System.Linq;
+using System.Collections;
 
 namespace Lairinus.Transitions
 {
@@ -10,9 +11,8 @@ namespace Lairinus.Transitions
         public bool enableTransition { get { return _sf_disableTransition; } set { _sf_disableTransition = value; } }
         public bool loop { get { return _sf_loop; } set { _sf_loop = value; } }
         public List<Phase> phases { get { return _sf_phases; } }
-        public GameObject targetGameObject { get { return _sf_targetGameObject; } set { _sf_targetGameObject = value; } }
 
-        public bool IsFinishedPlaying()
+        public bool IsFinished()
         {
             if (_currentPhaseIndex >= _sf_phases.Count && !_sf_loop)
                 return true;
@@ -26,8 +26,11 @@ namespace Lairinus.Transitions
             _sf_phases.Where(x => x != null).ToList().ForEach(X => X.UpdatePhaseTransition(0, 0, true));
         }
 
-        public void StartTransition()
+        public void StartTransition(bool reset = false)
         {
+            if (reset)
+                ResetTransition();
+
             Utility.GetInstance().StartTransitioner(this);
         }
 
@@ -47,7 +50,7 @@ namespace Lairinus.Transitions
             float totalTime = 0;
             foreach (Phase phase in _sf_phases)
             {
-                if (phase != null)
+                if (phase != null && !phase.disabled)
                     totalTime += phase.delay + phase.duration;
             }
             return totalTime;
@@ -56,7 +59,7 @@ namespace Lairinus.Transitions
         public void UpdateTransition_Internal(float updateInterval)
         {
             // Called after the transition is started and while it is being played.
-            if (IsFinishedPlaying())
+            if (IsFinished())
             {
                 StopTransition(false);
                 return;
@@ -112,6 +115,7 @@ namespace Lairinus.Transitions
         [SerializeField] private List<Phase> _sf_phases = new List<Phase>();
         [SerializeField] private bool _sf_playOnAwake = false;
         [SerializeField] private GameObject _sf_targetGameObject = null;
+        protected GameObject targetGameObject { get { return _sf_targetGameObject; } }
         private float _totalTimeDelayed = 0;
 
         private void Awake()
@@ -123,7 +127,7 @@ namespace Lairinus.Transitions
         private void UpdateTransition_CheckReset()
         {
             // Allows the Phase to be reset if it is currently looping
-            if (IsFinishedPlaying() && _sf_loop)
+            if (IsFinished() && _sf_loop)
             {
                 _currentLerpTime = 0;
                 _currentPhaseIndex = 0;
@@ -177,6 +181,18 @@ namespace Lairinus.Transitions
             }
             else
                 _isCurrentlyDelayed = false;
+        }
+
+        private Transitioner transitioner = null;
+
+        private IEnumerator WaitForTransitioner()
+        {
+            transitioner.StartTransition();
+            yield return new WaitForSeconds(transitioner.GetTotalLiveTime());
+
+            // Set the object inactive after running the Transitioner
+            transitioner.StopTransition();
+            transitioner.gameObject.SetActive(false);
         }
     }
 }

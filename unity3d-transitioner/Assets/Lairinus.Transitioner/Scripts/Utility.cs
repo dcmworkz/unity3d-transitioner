@@ -7,11 +7,6 @@ namespace Lairinus.Transitions.Internal
 {
     public class Utility : MonoBehaviour
     {
-        private Dictionary<Type, AvailableMemberTypes> _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
-        public Dictionary<Type, AvailableMemberTypes> typesDictionary { get { return _typesDictionary; } }
-        private Dictionary<AvailableMemberTypes, Type> _reverseTypeDictionary = new Dictionary<AvailableMemberTypes, Type>();
-        public Dictionary<AvailableMemberTypes, Type> reverseTypeDictionary { get { return _reverseTypeDictionary; } }
-
         public enum AvailableMemberTypes
         {
             Integer = 0,
@@ -19,17 +14,46 @@ namespace Lairinus.Transitions.Internal
             Float = 2,
             String = 3,
             Color = 4,
-            ObjectReference = 5,
-            LayerMask = 6,
-            Enum = 7,
             Vector2 = 8,
             Vector3 = 9,
             Vector4 = 10,
-            ArraySize = 12,
             Quaternion = 17,
-            FixedBufferSize = 19,
-            Vector2Int = 20,
-            Vector3Int = 21,
+        }
+
+        public Dictionary<AvailableMemberTypes, Type> reverseTypeDictionary { get { return _reverseTypeDictionary; } }
+        public Dictionary<Type, AvailableMemberTypes> typesDictionary { get { return _typesDictionary; } }
+
+        public static bool CanBeLerped(AvailableMemberTypes type)
+        {
+            switch (type)
+            {
+                case AvailableMemberTypes.Boolean:
+                    return false;
+
+                default:
+                    return true;
+            }
+        }
+
+        public static string GetAvailableMemberName(int availableMemberType)
+        {
+            return Enum.GetName(typeof(AvailableMemberTypes), availableMemberType);
+        }
+
+        public static Utility GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<Utility>();
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("Lairinus.TransitionerUtility");
+                    _instance = go.AddComponent<Utility>();
+                }
+                _instance.PopulateTypeDictionary();
+            }
+
+            return _instance;
         }
 
         public static object GetLerpedValue(string currentValueString, string finalValueString, AvailableMemberTypes memberType, float lerpedTime)
@@ -99,64 +123,6 @@ namespace Lairinus.Transitions.Internal
                 default:
                     return new object();
             }
-        }
-
-        public static string GetAvailableMemberName(int availableMemberType)
-        {
-            return Enum.GetName(typeof(AvailableMemberTypes), availableMemberType);
-        }
-
-        private static Utility _instance = null;
-
-        public static Utility GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<Utility>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("Lairinus.TransitionerUtility");
-                    _instance = go.AddComponent<Utility>();
-                }
-                _instance.PopulateTypeDictionary();
-            }
-
-            return _instance;
-        }
-
-        public static bool CanBeLerped(AvailableMemberTypes type)
-        {
-            switch (type)
-            {
-                case AvailableMemberTypes.Boolean:
-                case AvailableMemberTypes.Enum:
-                    return false;
-
-                default:
-                    return true;
-            }
-        }
-
-        private void PopulateTypeDictionary()
-        {
-            _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
-            _typesDictionary.Add(typeof(int), AvailableMemberTypes.Integer);
-            _typesDictionary.Add(typeof(bool), AvailableMemberTypes.Boolean);
-            _typesDictionary.Add(typeof(float), AvailableMemberTypes.Float);
-            _typesDictionary.Add(typeof(string), AvailableMemberTypes.String);
-            _typesDictionary.Add(typeof(Color), AvailableMemberTypes.Color);
-            _typesDictionary.Add(typeof(Vector2), AvailableMemberTypes.Vector2);
-            _typesDictionary.Add(typeof(Vector3), AvailableMemberTypes.Vector3);
-            _typesDictionary.Add(typeof(Vector4), AvailableMemberTypes.Vector4);
-
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Integer, typeof(int));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Boolean, typeof(bool));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Float, typeof(float));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.String, typeof(string));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Color, typeof(Color));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector2, typeof(Vector2));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector3, typeof(Vector3));
-            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector4, typeof(Vector4));
         }
 
         public static T GetObject<T>(string str)
@@ -250,6 +216,88 @@ namespace Lairinus.Transitions.Internal
             }
         }
 
+        public void StartTransitioner(Transitioner transitioner)
+        {
+            if (transitioner == null)
+                return;
+
+            int key = transitioner.GetInstanceID();
+            if (!_transitionsToStart.ContainsKey(key) && !_transitionsToStop.ContainsKey(key) && !_transitionsCurrentlyRunning.ContainsKey(key))
+                _transitionsToStart.Add(key, transitioner);
+        }
+
+        public void StopTransitioner(Transitioner transitioner)
+        {
+            if (transitioner == null)
+                return;
+
+            int key = transitioner.GetInstanceID();
+            if (_transitionsToStart.ContainsKey(key))
+                _transitionsToStart.Remove(key);
+            else if (!_transitionsToStop.ContainsKey(key))
+                _transitionsToStop.Add(key, transitioner);
+        }
+
+        private static Utility _instance = null;
+        private static Dictionary<int, Transitioner> _transitionsCurrentlyRunning = new Dictionary<int, Transitioner>();
+        private static Dictionary<int, Transitioner> _transitionsToStart = new Dictionary<int, Transitioner>();
+        private static Dictionary<int, Transitioner> _transitionsToStop = new Dictionary<int, Transitioner>();
+        private Dictionary<AvailableMemberTypes, Type> _reverseTypeDictionary = new Dictionary<AvailableMemberTypes, Type>();
+        private Dictionary<Type, AvailableMemberTypes> _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
+
+        private static Color ConvertStringToColor(string sColor)
+        {
+            try
+            {
+                if (sColor == null || sColor == "")
+                    return Color.white;
+
+                // expected string input is "RGBA(0.000,0.000,0.000,0.000)"
+                if (sColor.StartsWith("RGBA(") && sColor.EndsWith(")"))
+                {
+                    sColor = sColor.Substring(5, sColor.Length - 6);
+                }
+                string[] sArray = sColor.Split(',');
+                Color result = new Color(
+                    float.Parse(sArray[0]),
+                    float.Parse(sArray[1]),
+                    float.Parse(sArray[2]),
+                    float.Parse(sArray[3]));
+
+                return result;
+            }
+            catch
+            {
+                return Color.white;
+            }
+        }
+
+        private static Vector2 ConvertStringToVector2(string sVector)
+        {
+            try
+            {
+                if (sVector == null || sVector == "")
+                    return new Vector2();
+
+                // expected string input is "(0,0)"
+                if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+                {
+                    sVector = sVector.Substring(1, sVector.Length - 2);
+                }
+
+                string[] sArray = sVector.Split(',');
+                Vector2 result = new Vector3(
+                    float.Parse(sArray[0]),
+                    float.Parse(sArray[1]));
+
+                return result;
+            }
+            catch
+            {
+                return new Vector2();
+            }
+        }
+
         private static Vector3 ConvertStringToVector3(string sVector)
         {
             try
@@ -277,33 +325,6 @@ namespace Lairinus.Transitions.Internal
             catch
             {
                 return new Vector3();
-            }
-        }
-
-        private static Color ConvertStringToColor(string sColor)
-        {
-            try
-            {
-                if (sColor == null || sColor == "")
-                    return Color.white;
-
-                // expected string input is "RGBA(0.000,0.000,0.000,0.000)"
-                if (sColor.StartsWith("RGBA(") && sColor.EndsWith(")"))
-                {
-                    sColor = sColor.Substring(5, sColor.Length - 6);
-                }
-                string[] sArray = sColor.Split(',');
-                Color result = new Color(
-                    float.Parse(sArray[0]),
-                    float.Parse(sArray[1]),
-                    float.Parse(sArray[2]),
-                    float.Parse(sArray[3]));
-
-                return result;
-            }
-            catch
-            {
-                return Color.white;
             }
         }
 
@@ -335,56 +356,26 @@ namespace Lairinus.Transitions.Internal
             }
         }
 
-        private static Vector2 ConvertStringToVector2(string sVector)
+        private void PopulateTypeDictionary()
         {
-            try
-            {
-                if (sVector == null || sVector == "")
-                    return new Vector2();
+            _typesDictionary = new Dictionary<Type, AvailableMemberTypes>();
+            _typesDictionary.Add(typeof(int), AvailableMemberTypes.Integer);
+            _typesDictionary.Add(typeof(bool), AvailableMemberTypes.Boolean);
+            _typesDictionary.Add(typeof(float), AvailableMemberTypes.Float);
+            _typesDictionary.Add(typeof(string), AvailableMemberTypes.String);
+            _typesDictionary.Add(typeof(Color), AvailableMemberTypes.Color);
+            _typesDictionary.Add(typeof(Vector2), AvailableMemberTypes.Vector2);
+            _typesDictionary.Add(typeof(Vector3), AvailableMemberTypes.Vector3);
+            _typesDictionary.Add(typeof(Vector4), AvailableMemberTypes.Vector4);
 
-                // expected string input is "(0,0)"
-                if (sVector.StartsWith("(") && sVector.EndsWith(")"))
-                {
-                    sVector = sVector.Substring(1, sVector.Length - 2);
-                }
-
-                string[] sArray = sVector.Split(',');
-                Vector2 result = new Vector3(
-                    float.Parse(sArray[0]),
-                    float.Parse(sArray[1]));
-
-                return result;
-            }
-            catch
-            {
-                return new Vector2();
-            }
-        }
-
-        private static Dictionary<int, Transitioner> _transitionsToStart = new Dictionary<int, Transitioner>();
-        private static Dictionary<int, Transitioner> _transitionsToStop = new Dictionary<int, Transitioner>();
-        private static Dictionary<int, Transitioner> _transitionsCurrentlyRunning = new Dictionary<int, Transitioner>();
-
-        public void StartTransitioner(Transitioner transitioner)
-        {
-            if (transitioner == null)
-                return;
-
-            int key = transitioner.GetInstanceID();
-            if (!_transitionsToStart.ContainsKey(key) && !_transitionsToStop.ContainsKey(key) && !_transitionsCurrentlyRunning.ContainsKey(key))
-                _transitionsToStart.Add(key, transitioner);
-        }
-
-        public void StopTransitioner(Transitioner transitioner)
-        {
-            if (transitioner == null)
-                return;
-
-            int key = transitioner.GetInstanceID();
-            if (_transitionsToStart.ContainsKey(key))
-                _transitionsToStart.Remove(key);
-            else if (!_transitionsToStop.ContainsKey(key))
-                _transitionsToStop.Add(key, transitioner);
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Integer, typeof(int));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Boolean, typeof(bool));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Float, typeof(float));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.String, typeof(string));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Color, typeof(Color));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector2, typeof(Vector2));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector3, typeof(Vector3));
+            _reverseTypeDictionary.Add(AvailableMemberTypes.Vector4, typeof(Vector4));
         }
 
         private void Update()
@@ -395,14 +386,17 @@ namespace Lairinus.Transitions.Internal
                 if (_transitionsCurrentlyRunning.ContainsKey(transitionToStop))
                     _transitionsCurrentlyRunning.Remove(transitionToStop);
             }
-            _transitionsToStop.Clear();
+            if (_transitionsToStop.Count > 0)
+                _transitionsToStop.Clear();
 
             foreach (KeyValuePair<int, Transitioner> kvp in _transitionsToStart)
             {
                 if (kvp.Value != null && !_transitionsCurrentlyRunning.ContainsKey(kvp.Key))
                     _transitionsCurrentlyRunning.Add(kvp.Key, kvp.Value);
             }
-            _transitionsToStart.Clear();
+
+            if (_transitionsToStart.Count > 0)
+                _transitionsToStart.Clear();
 
             float deltaTime = Time.deltaTime;
             List<Transitioner> runningTransitions = _transitionsCurrentlyRunning.Values.ToList();
