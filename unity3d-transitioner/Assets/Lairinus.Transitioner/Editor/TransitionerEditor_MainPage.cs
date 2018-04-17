@@ -40,7 +40,12 @@ namespace Lairinus.Transitions
             }
 
             GUILayout.Space(20);
-            DisplayMainButton(Helper.content_mainButton_modifyPhases, _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
+
+            SerializedProperty property = serializedObject.FindProperty(Helper.transitionerProp_targetGameObject);
+            if (property.objectReferenceValue != null)
+                DisplayMainButton(Helper.content_mainButton_modifyPhases, _editorStyles.lairinusGreen, new Action(() => OpenPage(Pages.Phases)));
+            else
+                EditorGUILayout.HelpBox(Helper.helpBox_targetGameObjectNull, MessageType.Error);
         }
 
         private void DisplaySettingBox(GUIContent titleContent, Action[] propertyActions, float space, float preSpace = 0, float postSpace = 0)

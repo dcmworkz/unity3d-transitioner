@@ -38,8 +38,9 @@ namespace Lairinus.Transitions
         private void InitializePropertySelectorPage()
         {
             _selectedComponent = null;
-            Transitioner uiTransition = (Transitioner)target;
-            Component[] components = uiTransition.gameObject.GetComponents(typeof(Component));
+            SerializedProperty property = serializedObject.FindProperty(Helper.transitionerProp_targetGameObject);
+            GameObject targetGameObject = property.objectReferenceValue as GameObject;
+            Component[] components = targetGameObject.GetComponents(typeof(Component));
             _componentActions.Clear();
             foreach (Component c in components)
             {

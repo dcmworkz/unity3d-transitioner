@@ -133,6 +133,8 @@ namespace Lairinus.Transitions
 
             public const string phaseMemberProp_animationCurve = "_sf_animationCurve";
 
+            public const string transitionerProp_targetGameObject = "_sf_targetGameObject";
+
             // Phase Members -> Properties
             public const string phaseMemberProp_availableMemberType = "_sf_serializedPropertyType";
 
@@ -189,6 +191,9 @@ namespace Lairinus.Transitions
             public static GUIContent content_SettingsBoxTitle_Phases = new GUIContent("Phases", "Shows the \"Phases\" setting page. ");
             public static GUIContent content_setValueButton = new GUIContent("Set", "Updates the object's values based on this Phase Member");
             public static GUIContent content_targetGameObject = new GUIContent("Target GameObject", "The GameObject that will handle all of the Transitions and Phases");
+
+            // Help Boxes
+            public const string helpBox_targetGameObjectNull = "The Target GameObject property is null. In order to set Phases, you need to assign a Game Object";
         }
     }
 }

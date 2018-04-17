@@ -14137,6 +14137,7 @@ GameObject:
   - component: {fileID: 1521046639}
   - component: {fileID: 1521046636}
   - component: {fileID: 1521046635}
+  - component: {fileID: 1521046634}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14144,6 +14145,59 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1521046634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1521046633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f12a917f16e6449938d5f47f43eb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sf_disableTransition: 0
+  _sf_loop: 0
+  _sf_phases:
+  - _sf_delay: 0
+    _sf_disabled: 0
+    _sf_duration: 1
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    _sf_name: Phase 1
+    _sf_reflectedMembers:
+    - _sf_memberType: 0
+      _sf_serializedPropertyType: 4
+      _sf_parentComponent: {fileID: 634067721}
+      _sf_memberName: color
+      _sf_memberValueString: RGBA(1.000, 0.078, 0.078, 1.000)
+      _sf_isDisabled: 0
+      _sf_canBeLerped: 1
+      _sf_useSeparateAnimationCurve: 0
+      _sf_animationCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  _sf_playOnAwake: 1
+  _sf_targetGameObject: {fileID: 634067718}
 --- !u!81 &1521046635
 AudioListener:
   m_ObjectHideFlags: 0
@@ -18711,6 +18765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941049817}
   - component: {fileID: 1941049816}
+  - component: {fileID: 1941049818}
   m_Layer: 0
   m_Name: Lairinus.TransitionerUtility
   m_TagString: Untagged
@@ -18742,6 +18797,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1941049818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941049815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f12a917f16e6449938d5f47f43eb3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sf_disableTransition: 0
+  _sf_loop: 0
+  _sf_phases:
+  - _sf_delay: 0
+    _sf_disabled: 0
+    _sf_duration: 0
+    _sf_lerpPlaystyleType:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 0
+    _sf_name: Phase 1
+    _sf_reflectedMembers: []
+  _sf_playOnAwake: 0
+  _sf_targetGameObject: {fileID: 634067718}
 --- !u!1 &1944290281
 GameObject:
   m_ObjectHideFlags: 0
