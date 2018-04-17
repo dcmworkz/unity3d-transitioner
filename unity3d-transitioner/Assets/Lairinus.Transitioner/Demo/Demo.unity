@@ -14463,22 +14463,22 @@ MonoBehaviour:
   _sf_loop: 1
   _sf_phases:
   - _sf_delay: 0
-    _sf_disabled: 1
-    _sf_duration: 1
+    _sf_disabled: 0
+    _sf_duration: 2
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
+        inSlope: 0.5
+        outSlope: 0.5
         tangentMode: 0
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 1
-        inSlope: 1
-        outSlope: 1
+        inSlope: 0.5
+        outSlope: 0.5
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -14501,21 +14501,21 @@ MonoBehaviour:
         m_RotationOrder: 0
   - _sf_delay: 0
     _sf_disabled: 0
-    _sf_duration: 1
+    _sf_duration: 2
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
+        inSlope: 0.5
+        outSlope: 0.5
         tangentMode: 0
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 1
-        inSlope: 1
-        outSlope: 1
+        inSlope: 0.5
+        outSlope: 0.5
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -14538,21 +14538,21 @@ MonoBehaviour:
         m_RotationOrder: 0
   - _sf_delay: 0
     _sf_disabled: 0
-    _sf_duration: 1
+    _sf_duration: 2
     _sf_lerpPlaystyleType:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 1
-        outSlope: 1
+        inSlope: 0.5
+        outSlope: 0.5
         tangentMode: 0
       - serializedVersion: 2
-        time: 1
+        time: 2
         value: 1
-        inSlope: 1
-        outSlope: 1
+        inSlope: 0.5
+        outSlope: 0.5
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -16821,7 +16821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1744358183
 Transform:
   m_ObjectHideFlags: 0

@@ -20,6 +20,29 @@ namespace Lairinus.Transitions.Internal
             Quaternion = 17,
         }
 
+        private Dictionary<Guid, object> _currentPhaseMemberPropertyValues = new Dictionary<Guid, object>();
+
+        public void AddCurrentPhaseMemberPropertyValue(Guid guid, object value)
+        {
+            if (_currentPhaseMemberPropertyValues.ContainsKey(guid))
+                _currentPhaseMemberPropertyValues[guid] = value;
+            else
+            {
+                _currentPhaseMemberPropertyValues.Add(guid, value);
+            }
+        }
+
+        public object GetCurrentPhaseMemberPropertyValue(Guid guid)
+        {
+            if (_currentPhaseMemberPropertyValues.ContainsKey(guid))
+                return _currentPhaseMemberPropertyValues[guid];
+            else
+            {
+                _currentPhaseMemberPropertyValues.Add(guid, new object());
+                return _currentPhaseMemberPropertyValues[guid];
+            }
+        }
+
         public Dictionary<AvailableMemberTypes, Type> reverseTypeDictionary { get { return _reverseTypeDictionary; } }
         public Dictionary<Type, AvailableMemberTypes> typesDictionary { get { return _typesDictionary; } }
 
@@ -125,6 +148,83 @@ namespace Lairinus.Transitions.Internal
             }
         }
 
+        public static object GetLerpedValue_Runtime(object currentValue, object finalValue, AvailableMemberTypes memberType, float lerpedTime)
+        {
+            try
+            {
+                switch (memberType)
+                {
+                    case AvailableMemberTypes.Color:
+                        {
+                            Color final = new Color();
+                            Color currentValueColor = (Color)currentValue;
+                            Color finalValueColor = (Color)finalValue;
+                            final = Color.Lerp(currentValueColor, finalValueColor, lerpedTime);
+                            return final;
+                        }
+
+                    case AvailableMemberTypes.Float:
+                        {
+                            float final = 0;
+                            float currentValueFloat = (float)currentValue;
+                            float finalValueFloat = (float)finalValue;
+                            final = Mathf.Lerp(currentValueFloat, finalValueFloat, lerpedTime);
+                            return final;
+                        }
+
+                    case AvailableMemberTypes.Vector2:
+                        {
+                            Vector2 final = new Vector2();
+                            Vector2 currentValueVector2 = (Vector2)currentValue;
+                            Vector2 finalValueVector2 = (Vector2)finalValue;
+                            final = Vector2.Lerp(currentValueVector2, finalValueVector2, lerpedTime);
+                            return final;
+                        }
+
+                    case AvailableMemberTypes.Vector3:
+                        {
+                            Vector3 final = new Vector3();
+                            Vector3 currentValueVector3 = (Vector3)currentValue;
+                            Vector3 finalValueVector3 = (Vector3)finalValue;
+                            final = Vector3.Lerp(currentValueVector3, finalValueVector3, lerpedTime);
+                            return final;
+                        }
+
+                    case AvailableMemberTypes.Vector4:
+                        {
+                            Vector4 final = new Vector4();
+                            Vector4 currentValueVector4 = (Vector4)currentValue;
+                            Vector4 finalValueVector4 = (Vector4)finalValue;
+                            final = Vector4.Lerp(currentValueVector4, finalValueVector4, lerpedTime);
+                            return final;
+                        }
+
+                    case AvailableMemberTypes.Integer:
+                        {
+                            int final = 0;
+                            float currentInt = (int)currentValue;
+                            float finalInt = (int)finalValue;
+                            final = Mathf.RoundToInt(Mathf.Lerp(currentInt, finalInt, lerpedTime));
+                            return final;
+                        }
+
+                    case AvailableMemberTypes.String:
+                        {
+                            string finalValueString = (string)finalValue;
+                            int maxIndexFromLerp = Mathf.RoundToInt(finalValueString.Length * lerpedTime);
+                            return finalValueString.Substring(0, maxIndexFromLerp);
+                        }
+
+                    default:
+                        return new object();
+                }
+            }
+            catch
+            {
+                return new object();
+            }
+        }
+
         public static T GetObject<T>(string str)
         {
             Type type = typeof(T);
@@ -176,6 +276,51 @@ namespace Lairinus.Transitions.Internal
                     return new object();
 
                 AvailableMemberTypes memberType = GetInstance().typesDictionary[type];
+                switch (memberType)
+                {
+                    case AvailableMemberTypes.Vector2:
+                        return ConvertStringToVector2(str);
+
+                    case AvailableMemberTypes.Vector3:
+                        return ConvertStringToVector3(str);
+
+                    case AvailableMemberTypes.Vector4:
+                        return ConvertStringToVector4(str);
+
+                    case AvailableMemberTypes.String:
+                        return str;
+
+                    case AvailableMemberTypes.Integer:
+                        return int.Parse(str);
+
+                    case AvailableMemberTypes.Float:
+                        return float.Parse(str);
+
+                    case AvailableMemberTypes.Boolean:
+                        {
+                            bool tryparse = false;
+                            bool.TryParse(str, out tryparse);
+                            return tryparse;
+                        }
+
+                    case AvailableMemberTypes.Color:
+                        return ConvertStringToColor(str);
+
+                    default:
+                        return new object();
+                }
+            }
+            catch
+            {
+                return new object();
+            }
+        }
+
+        public static object GetObject_Runtime(AvailableMemberTypes _type, string str)
+        {
+            try
+            {
+                AvailableMemberTypes memberType = _type;
                 switch (memberType)
                 {
                     case AvailableMemberTypes.Vector2:

@@ -38,25 +38,27 @@ namespace Lairinus.Transitions
         protected string memberValueString { get { return _sf_memberValueString; } }
         public Component parentComponent { get { return _sf_parentComponent; } }
         public string memberName { get { return _sf_memberName; } }
-        public PropertyInfo property { get; private set; }
+        public PropertyInfo propertyInfo { get; private set; }
         public AnimationCurve separateAnimationCurve { get { return _sf_animationCurve; } }
-        public FieldInfo field { get; private set; }
+        public FieldInfo fieldInfo { get; private set; }
         public Utility.AvailableMemberTypes serializedMemberType { get { return _sf_serializedPropertyType; } }
         public bool isDisabled { get { return _sf_isDisabled; } }
         private object _startValue = null;
         private object _resetValue = null;
+        private object _finalValue = null;
+        private bool _isInitialized = false;
 
         public void SetValue(object value)
         {
             try
             {
-                if (field == null && property == null)
+                if (fieldInfo == null && propertyInfo == null)
                     TryCacheReflectedMemberFields();
 
-                if (_sf_memberType == MemberType.Field && field != null)
-                    field.SetValue(_sf_parentComponent, value);
-                else if (_sf_memberType == MemberType.Property && property != null)
-                    property.SetValue(_sf_parentComponent, value, null);
+                if (_sf_memberType == MemberType.Field && fieldInfo != null)
+                    fieldInfo.SetValue(_sf_parentComponent, value);
+                else if (_sf_memberType == MemberType.Property && propertyInfo != null)
+                    propertyInfo.SetValue(_sf_parentComponent, value, null);
             }
             catch
             {
@@ -65,12 +67,23 @@ namespace Lairinus.Transitions
 
         public object GetValue()
         {
-            TryCacheReflectedMemberFields();
-            if (_sf_memberType == MemberType.Field && field != null)
-                return field.GetValue(_sf_parentComponent);
-            else if (_sf_memberType == MemberType.Property && property != null)
-                return property.GetValue(_sf_parentComponent, null);
+            if (_sf_memberType == MemberType.Field && fieldInfo != null)
+                return fieldInfo.GetValue(_sf_parentComponent);
+            else if (_sf_memberType == MemberType.Property && propertyInfo != null)
+                return propertyInfo.GetValue(_sf_parentComponent, null);
             else return new object();
+        }
+
+        private void Initialize()
+        {
+            TryCacheReflectedMemberFields();
+            if (_startValue == null)
+                _startValue = GetValue();
+
+            if (_resetValue == null)
+                _resetValue = _startValue;
+
+            _finalValue = Utility.GetObject_Runtime(_sf_serializedPropertyType, _sf_memberValueString);
         }
 
         public void UpdatePhaseMember(float curveTime, float actualTime, bool isResetting)
@@ -78,14 +91,17 @@ namespace Lairinus.Transitions
             if (_sf_isDisabled)
                 return;
 
+            if (!_isInitialized || isResetting)
+            {
+                _isInitialized = true;
+                Initialize();
+            }
+
             if (isResetting)
                 _startValue = _resetValue;
 
             if (_startValue == null)
                 _startValue = GetValue();
-
-            if (_resetValue == null)
-                _resetValue = _startValue;
 
             float lerpValueFloat = curveTime;
             if (_sf_useSeparateAnimationCurve)
@@ -93,9 +109,9 @@ namespace Lairinus.Transitions
 
             if (_sf_canBeLerped)
             {
-                string currentValue = _startValue.ToString();
-                string finalValue = _sf_memberValueString;
-                object lerpedValue = Utility.GetLerpedValue(currentValue, finalValue, _sf_serializedPropertyType, lerpValueFloat);
+                // Get string currentValue from dictionary
+                // Get finalValue on initialization
+                object lerpedValue = Utility.GetLerpedValue_Runtime(_startValue, _finalValue, _sf_serializedPropertyType, lerpValueFloat);
                 SetValue(lerpedValue);
                 if (lerpValueFloat >= 1)
                     _startValue = null;
@@ -117,13 +133,13 @@ namespace Lairinus.Transitions
 
             if (_sf_memberType == MemberType.Property)
             {
-                if (property == null)
-                    property = _sf_parentComponent.GetType().GetProperty(_sf_memberName);
+                if (propertyInfo == null)
+                    propertyInfo = _sf_parentComponent.GetType().GetProperty(_sf_memberName);
             }
             else
             {
-                if (field == null)
-                    field = _sf_parentComponent.GetType().GetField(_sf_memberName);
+                if (fieldInfo == null)
+                    fieldInfo = _sf_parentComponent.GetType().GetField(_sf_memberName);
             }
         }
 
