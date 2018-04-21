@@ -52,6 +52,8 @@ namespace Lairinus.Transitions
         {
             try
             {
+                if (!_isInitialized)
+                    Initialize();
                 if (fieldInfo == null && propertyInfo == null)
                     TryCacheReflectedMemberFields();
 
@@ -67,6 +69,8 @@ namespace Lairinus.Transitions
 
         public object GetValue()
         {
+            if (!_isInitialized)
+                Initialize();
             if (_sf_memberType == MemberType.Field && fieldInfo != null)
                 return fieldInfo.GetValue(_sf_parentComponent);
             else if (_sf_memberType == MemberType.Property && propertyInfo != null)
@@ -76,6 +80,7 @@ namespace Lairinus.Transitions
 
         private void Initialize()
         {
+            _isInitialized = true;
             TryCacheReflectedMemberFields();
             if (_startValue == null)
                 _startValue = GetValue();

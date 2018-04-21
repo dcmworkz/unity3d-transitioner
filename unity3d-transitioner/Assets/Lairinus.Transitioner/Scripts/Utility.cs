@@ -14,10 +14,10 @@ namespace Lairinus.Transitions.Internal
             Float = 2,
             String = 3,
             Color = 4,
-            Vector2 = 8,
-            Vector3 = 9,
-            Vector4 = 10,
-            Quaternion = 17,
+            Vector2 = 5,
+            Vector3 = 6,
+            Vector4 = 7,
+            Quaternion = 8,
         }
 
         private Dictionary<Guid, object> _currentPhaseMemberPropertyValues = new Dictionary<Guid, object>();
