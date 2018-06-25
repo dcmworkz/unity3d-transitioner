@@ -1,3 +1,4 @@
-Transitions and tweens objects between different states
+# Transitioner tool
+#### Transitions and tweens objects between different states
 
 Please visit http://lairinus.com/transitioner/ for more information!
