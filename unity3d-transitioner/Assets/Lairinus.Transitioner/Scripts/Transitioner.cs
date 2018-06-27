@@ -24,6 +24,9 @@ namespace Lairinus.Transitions
             _currentLerpTime = 0;
             _currentPhaseIndex = 0;
             _sf_phases.Where(x => x != null).ToList().ForEach(X => X.UpdatePhaseTransition(0, 0, true));
+            Phase firstPhase = _sf_phases.First(x => x != null);
+            if (firstPhase != null)
+                firstPhase.UpdatePhaseTransition(0, 0, true);
         }
 
         public void StartTransition(bool reset = false)
